@@ -4,25 +4,8 @@
         <div class="row">
             <div id="jumbotron" class="col-12 p-0 d-flex justify-content-center align-content-center flex-wrap slider" >
 
-                <!-- slider jumbotron -->
 
-                <div class="slider">
-                    <div class="slide">
-                        <img src="https://cdn2.hometogo.net/assets/media/pics/1500_500/6118eee48197f.jpg" />
-                    </div>
-                    <div class="slide">
-                        <img src="https://images7.alphacoders.com/344/thumb-1920-344344.jpg" />
-                    </div>
-                    <div class="slide">
-                        <img src="https://cdn2.hometogo.net/assets/media/pics/1500_500/6119e4cb74e03.jpg"/>
-                    </div>
-                    <div class="slide">
-                        <img src="https://cdn2.hometogo.net/assets/media/pics/1500_500/6119c32183a5d.jpg" />
-                    </div>
-                </div>
-
-                    <!-- div input search -->
-
+                <!-- div input search -->
                 <div class="input-search d-flex justify-content-center align-content-center flex-wrap position-relative">
                     <input type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?"
                         @keyup="autocomplete" @keypress.enter="filteredSearch" required/>
@@ -39,8 +22,7 @@
 
             <div class="row">
 
-                    <!-- //!! FILTRI SERVIZI  -->
-
+                <!-- //!! FILTRI SERVIZI  -->
                 <div class="my-box col-12 col-md-6 d-flex flex-column justify-content-center my-2 align-items-center">
                     <h4 class="text-uppercase">Seleziona uno o più servizi</h4>
                     <div class="d-flex col-12 col-md-4 d-flex mx-2 align-content-center ms-5" v-for="(service, index) in services" :key="index">
@@ -55,7 +37,6 @@
                 </div>
 
                 <!-- //% FILTRI  con il  -->
-
                 <div class="my-box inputs col-12 col-md-6 d-flex flex-column justify-content-center my-2 align-items-center">
                     <div class="single-input mx-2">
                         <div class="label">Raggio</div>
@@ -111,17 +92,16 @@
             </div>
         </div>
     </div>
-    <NavMobile />
+    
 </div>
 </template>
 
 <script>
-import NavMobile from "../components/NavMobile.vue";
+
 export default {
-name: "AdvancedSearch",
-components: {
-        NavMobile,
-    },
+
+    name: "AdvancedSearch",
+
     data() {
         return {
             filtered: [],

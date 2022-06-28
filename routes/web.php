@@ -28,5 +28,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 
 // QUALSIASI ROTTA NON RICONOSCIUTA PORTERA' ALLA HOME PAGE DI BOOL-BNB
 Route::get("{any?}", function(){
-    return view('guest.home');
+    return view('layouts.home');
 })->where('any', '.*'); 

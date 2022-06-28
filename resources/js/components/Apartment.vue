@@ -68,20 +68,7 @@
             </div>
 
         </div>
-        <!--<div class="card m-2 p-2">
-            <img v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://') "
-            :src="apartment.image" class="card-img-top h-50" alt="image">
-            <img v-else
-            :src="'../storage/' + apartment.image" class="card-img-top h-50" alt="image">
-            <div class="card-body">
-            <h5 class="card-title">{{apartment.title}}</h5>
-            <p>{{ apartment.sponsorships.length}}</p>
-            <p class="card-text">{{apartment.description}}</p>
-            <router-link :to="{ name: 'apartment-details', params: { id: apartment.id } }">
-                Vedi questa Casa
-            </router-link>
-            </div>
-        </div>-->
+      
 </template>
 
 <script>

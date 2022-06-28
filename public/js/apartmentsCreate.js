@@ -2188,7 +2188,7 @@ function writingAddressList(list, array) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\esercizi-boolean\bool-bnb\resources\js\apartmentsCreate.js */"./resources/js/apartmentsCreate.js");
+module.exports = __webpack_require__(/*! C:\esercizi-boolean\my-boolBnb\resources\js\apartmentsCreate.js */"./resources/js/apartmentsCreate.js");
 
 
 /***/ })

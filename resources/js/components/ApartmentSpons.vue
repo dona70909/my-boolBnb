@@ -1,5 +1,5 @@
 <template>
-<div class="col-12 col-md-6 col-lg-4 col-xl-3 p-0 mb-5 d-flex justify-content-center align-items-center p-4" v-if="endDate.end_date > this.today" >
+<div class="col-12 col-md-6 col-lg-4 col-xl-3 p-0 mb-5 d-flex justify-content-center align-items-center p-4" >
     <div class="my-card">
         <ul class="ul">
             <li v-for="(service, index) in this.getListServices()" :key="index">

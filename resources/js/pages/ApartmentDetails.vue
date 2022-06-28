@@ -77,17 +77,19 @@
             </div>
         </div>
     </div>
-    <NavMobile />
+    
 </div>
 </template>
+
+
 <script>
 import tt from "@tomtom-international/web-sdk-maps";
-import NavMobile from "../components/NavMobile.vue";
+
 export default {
+
+
     name: "ApartmentDetails",
-    components: {
-        NavMobile,
-    },
+
     data: function () {
         return {
             apartment: [],

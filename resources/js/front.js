@@ -4,6 +4,9 @@ Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").get
 
 window.Vue = require('vue');
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+
 import Vue from 'vue';
 import VueRouter from 'vue-router'
 import App from './views/App.vue';
@@ -52,7 +55,9 @@ const router = new VueRouter({
     ]
 });
 const app = new Vue({
+
+    router,
     el: '#root',
     render: h => h(App),
-    router
+    
 });

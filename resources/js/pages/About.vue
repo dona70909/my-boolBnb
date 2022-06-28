@@ -101,18 +101,16 @@
             </div>
         </div>
     </div>
-    <NavMobile />
+   
     </div>
 </div>
 </template>
 
 <script>
-import NavMobile from "../components/NavMobile.vue";
+
 export default {
-name: "About.vue",
-components: {
-    NavMobile,
-},
+    name: "Aboutus",
+
 };
 </script>
 

@@ -11,8 +11,6 @@ const mix = require('laravel-mix');
  |
  */
 
-/* mix.options({processCssUrls:false})
-    .sass('resources/sass/app.scss', 'public/css'); */
 
 mix.sass('resources/sass/app.scss', 'public/css').options( {processCssUrl: false} );
 
@@ -26,3 +24,5 @@ mix.js('resources/js/front.js', 'public/js');
 
 /* //# js per collegare javascript al create di blade */
 mix.js('resources/js/apartmentsCreate.js', 'public/js');
+
+
