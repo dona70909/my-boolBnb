@@ -1,20 +1,24 @@
 <template>
-    <div class="container-fluid p-0">
+    <div class="container-fluid ">
 
-        <div class="row mb-5">
-            <div class="col-12 d-flex justify-content-center align-content-center ">
-                <!-- //!! div input search -->
-                <div class="input-search d-flex justify-content-center ">
-                    <input type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="getApartmentsFiltered" required/>
-                    <div class="list-address-box">
-                    <p class="hint-list" v-for="(addressHint, index) in listAddress" :key="index" @click="completer(index)">
-                        {{ addressHint }}
-                    </p>
-                    </div>
+        <div class="row mb-5 justify-content-center">
+            <div class="col-8">
+
+                <div class="container-input-search d-flex justify-content-center">
+
+                    <input class="input-bar" type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="getApartmentsFiltered" required/>
                     <button class="align-self-center" @click="getApartmentsFiltered">
                         Cerca
                     </button>
+
                 </div>
+
+                <ul class="wrapper-hints-address" v-for="(addressHint, index) in listAddress" :key="index" @click="completer(index)">
+                    <li class="hint-item" >
+                        {{ addressHint }}
+                    </li>
+                </ul>
+
             </div>
         </div>
 
@@ -133,7 +137,24 @@ export default {
 
 <style lang="scss" scoped>
     
+    //# cards wrapper
     .row-wrap-cards {
         gap: 5rem 1rem;
     }
+
+    //#style search bar
+    
+    input{
+
+        width: 100%;
+        border-radius: 10px;
+        padding: 1rem;
+        border: 1px solid blue;
+
+        &:focus {
+
+            border: 1px solid blue;
+        }
+    }
+
 </style>

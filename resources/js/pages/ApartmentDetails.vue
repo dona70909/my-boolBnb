@@ -160,48 +160,8 @@ export default {
     },
 };
 </script>
+
+
 <style lang="scss" scoped>
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.my-img-bg,.my-map{
-    height: 600px;
-    border-radius: 20px;
-}
-img, .map{
-    border-radius: 20px;
-}
-.map{
-    height: 100%;
-    width: 100%;
-}
-@media screen and(max-width: 991px) {
-    .my-img-bg,.my-map{
-    height: 400px;
-}
-}
-h1{
-    color:#3F5EFB ;
-}
-.content {
-  padding: 7rem 0;
-}
-.container {
-  max-width: 960px;
-}
-.contact-wrap {
-  -webkit-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
-}
-.contact-wrap .form {
-  background: #fff;
-}
-.contact-wrap .form{
-  padding: 40px;
-}
-.btn-primary{
-    border-radius: 10px;
-}
+
 </style>

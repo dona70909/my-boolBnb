@@ -14,7 +14,6 @@ export default {
 
 <style lang="scss">
     main {
-        margin-top: 10rem;
-        overflow-y: hidden;
+        margin-top: 13rem;
     }
 </style>

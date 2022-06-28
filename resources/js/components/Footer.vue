@@ -1,7 +1,15 @@
 <template>
-    <section class="container-fluid">
-      QUI UN FOOTER CON LINK A CASO
-    </section>
+    
+    <footer>
+        <section class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              Footer
+            </div>
+          </div>
+        </section>
+    </footer>
+
 </template>
 
 <script>
@@ -12,6 +20,7 @@ export default {
 
   data: function () {
     return {
+
       navItems: [
         {
           label: "About us",
@@ -28,6 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .footer {
   width: 100%;
   height: 20vh;

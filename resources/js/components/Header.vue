@@ -1,29 +1,35 @@
 <template>
 
-  <header class="">
-      <nav class="fixed-top my-navbar d-flex align-items-center justify-content-space-around" id="nav">
-        <!-- //% logo -->
-        <a class="my-navbar-logo " href="/">
-            <h1>Boolbnb</h1>
-        </a>
+  <header class="nav-wrapper d-flex align-items-center  fixed-top">
 
-        <a href="/admin/apartments">
-            <h1>Dashboard</h1>
-        </a>
+      <nav class="my-navbar d-flex  justify-content-between " >
 
-        <a v-if="$userEmail == ''" href="/register">
-            <h1>Registrati</h1>
-        </a>
+        <div class="nav-bar-left d-flex">
+            <a class="my-navbar-logo " href="/">
+                <h1>Boolbnb</h1>
+            </a>
 
-        <a v-if="$userEmail == ''"  href="/login">
-            <h1>Login</h1>
-        </a>
+            <a v-if="$userEmail != ''"  href="/admin/apartments">
+                <h1>Dashboard</h1>
+            </a>
+        </div>
 
-        <a v-if="$userEmail != ''" href="#"  @click.prevent="logout()">
-          <h1> Logout </h1>
-        </a>
+        <div class="d-flex nav-bar-right">
+          <a v-if="$userEmail == ''" href="/register">
+              <h1>Registrati</h1>
+          </a>
+
+          <a v-if="$userEmail == ''"  href="/login">
+              <h1>Login</h1>
+          </a>
+
+          <a v-if="$userEmail != ''" href="#"  @click.prevent="logout()">
+            <h1> Logout </h1>
+          </a>
+        </div>
 
     </nav>
+
   </header>
 
 </template>
@@ -66,14 +72,13 @@ export default {
 <style lang="scss">
 
   //#NAV BAR STYLE WRAPPER
-  #nav {
+  header {
 
     background-color: blue;
     color: red;
     height: 20vh;
     width: 100%;
     
-
     a {
         margin: 0 .5rem;
         
