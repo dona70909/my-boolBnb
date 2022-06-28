@@ -7,8 +7,9 @@
                 <div class="container-input-search d-flex justify-content-center">
 
                     <input class="input-bar" type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="getApartmentsFiltered" required/>
+                    <!--//# solo di prova -->
                     <button class="align-self-center" @click="getApartmentsFiltered">
-                        Cerca
+                        <i class="bi bi-search"></i>
                     </button>
 
                 </div>
@@ -31,7 +32,7 @@
 </template>
 
 <script>
-import ApartmentSpons from "../components/ApartmentSpons.vue";
+import ApartmentSpons from "../components/main/ApartmentSpons.vue";
 
 
 export default {
@@ -147,13 +148,21 @@ export default {
     input{
 
         width: 100%;
-        border-radius: 10px;
+        border-radius: 13px;
         padding: 1rem;
-        border: 1px solid blue;
+        border: 3px solid blue;
 
         &:focus {
 
-            border: 1px solid blue;
+            border: 3px solid blue;
+            outline: none;
+        }
+
+        button {
+
+            border: 3px solid blue;
+            background:blue;
+            color:white;
         }
     }
 
