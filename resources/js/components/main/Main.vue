@@ -1,5 +1,5 @@
 <template>
-    <main class="wrapper-main mb-5">
+    <main class="wrapper-main mb-2">
         <keep-alive include="AdvancedSearch, HomePage" max="5">
             <router-view/>
         </keep-alive>
@@ -14,6 +14,6 @@ export default {
 
 <style lang="scss">
     main {
-        margin-top: 13rem;
+        margin-top: 8rem;
     }
 </style>

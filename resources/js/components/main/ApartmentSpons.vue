@@ -1,7 +1,7 @@
 <template>
 
   
-  <div v-if="this.isSponsorized == true" class="my-card-wrap col-3 ">
+  <div v-if="this.isSponsorized == true" class="my-card-wrap col-3">
 
     <router-link class="wrapper-img mb-2 " :to="{ name: 'apartment-details', params: { id: apartment.id } }">
         <!-- //!! IMMAGINE -->

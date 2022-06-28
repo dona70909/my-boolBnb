@@ -76,7 +76,7 @@ export default {
 
     background-color: blue;
     color: red;
-    height: 20vh;
+    height: 15vh;
     width: 100%;
     
     a {
@@ -86,7 +86,7 @@ export default {
 
     h1 {
 
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-weight: 700;
     }
 
