@@ -20,10 +20,9 @@
 
     <!-- Styles -->
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.19.0/maps/maps.css'>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    @yield('style')
+    
 </head>
+
 <body>
 
 

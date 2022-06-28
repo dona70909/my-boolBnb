@@ -5,6 +5,7 @@ Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").get
 window.Vue = require('vue');
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 
 import Vue from 'vue';

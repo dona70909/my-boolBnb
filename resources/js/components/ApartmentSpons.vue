@@ -20,7 +20,8 @@
     </div>
 
     <div v-for="(sponsor, index) in apartment.apartment_sponsorship" :key="index">
-        <p>{{sponsor.end_date}}</p>
+        <p >{{sponsor.end_date}}</p>
+        <i class="bi bi-star-fill"></i>
     </div>
 
   </div>
@@ -67,14 +68,19 @@ export default {
           }
           
         });
+    },
+
+    getToday(){
+
+      return this.today = moment().format('YYYY-MM-DD hh:mm:ss') ;
     }
 
   },
 
   mounted() {
     
-    this.today = moment().format('YYYY-MM-DD hh:mm:ss') ;
-    
+    //this.getToday();
+    this.today = moment().format('YYYY-MM-DD hh:mm:ss');
     console.log(this.today);
     this.getApartmentsSponsorized();
 

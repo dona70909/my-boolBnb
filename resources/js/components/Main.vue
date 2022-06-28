@@ -1,5 +1,5 @@
 <template>
-    <main class="wrapper-main ">
+    <main class="wrapper-main mb-5">
         <keep-alive include="AdvancedSearch, HomePage" max="5">
             <router-view/>
         </keep-alive>
@@ -15,5 +15,6 @@ export default {
 <style lang="scss">
     main {
         margin-top: 10rem;
+        overflow-y: hidden;
     }
 </style>
