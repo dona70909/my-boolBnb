@@ -61,7 +61,7 @@ export default {
         axios.get("/api/apartments").then((result) => {
                 //console.log(result.data.results);
                 this.apartments = result.data.results;
-                console.log(this.apartments);
+                
             })
             .catch((error) => {
             console.error(error);

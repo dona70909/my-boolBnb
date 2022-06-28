@@ -108,15 +108,12 @@ export default {
     },
     methods: {
         getSingleApartment(apartmentId) {
-            axios
-            .get(`http://localhost:8000/api/apartments/single/${apartmentId}`)
-            .then((result) => {
-                console.log(result.data);
+            axios.get(`http://localhost:8000/api/apartments/single/${apartmentId}`).then((result) => {
+                
                 this.apartment = result.data;
-                console.log(this.apartment.lat);
-                console.log(this.apartment.lng);
+                
                 this.initializeMap(this.apartment.lat,this.apartment.lng);
-                console.log('mappa');
+
                 console.log(this.initializeMap(this.apartment.lat,this.apartment.lng));
             })
             .catch((error) => {

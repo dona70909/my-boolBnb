@@ -195,4 +195,15 @@ class ApartmentController extends Controller
         return compact('response');
 
     }
+
+    public function apartmentImages($id) {
+
+        $images = Image::where('apartment_id','==', $id)->get();
+        
+        $response = [
+            'result' => true,
+            'data' => $images
+        ];
+        return compact('response');
+    }
 }

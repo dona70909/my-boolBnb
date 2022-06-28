@@ -55,7 +55,7 @@ class ImagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
     }
 
     /**
@@ -68,4 +68,6 @@ class ImagesController extends Controller
     {
         //
     }
+
+    
 }

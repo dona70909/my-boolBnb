@@ -78,11 +78,11 @@ export default {
         });
     },
 
-    getImages() {
-      axios.get("api/images").then((result) => {
+    getImages(apartmentId) {
+      axios.get(`api/images/${apartmentId}`).then( response => {
 
-          //console.log(result.data.results);
-          this.images = result.data.results;
+          console.log(response);
+          //this.images = response;
 
           return this.images;
       })
@@ -133,9 +133,9 @@ export default {
   mounted() {
     
     this.getApartmentsSponsorized();
-    //this.getImages();
-    //console.log(this.apartment.id);
-    console.log(this.getApartmentImages(this.apartment.id));
+    //this.getImages(this.apartment.id);
+    //console.log(this.getImages(this.apartment.id));
+    //console.log(this.getApartmentImages(this.apartment.id));
 
     
   },
