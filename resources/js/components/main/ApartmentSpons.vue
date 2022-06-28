@@ -25,6 +25,12 @@
           </div>
     </div>
 
+    <!-- <div v-for="(image,index) in images" :key="index" class="corusel-images">
+      <img v-show="apartment.id == image.apartment_id" :src="image.img_url" alt="img">
+    </div>  -->
+
+
+
   </div>
 
 </template>
@@ -41,6 +47,8 @@ export default {
 
         listService:[],
         isSponsorized: null,
+        images:[],
+        apartmentImages:[],
     }
   },
 
@@ -70,12 +78,65 @@ export default {
         });
     },
 
+    getImages() {
+      axios.get("api/images").then((result) => {
+
+          //console.log(result.data.results);
+          this.images = result.data.results;
+
+          return this.images;
+      })
+
+      .catch((error) => {
+        console.error(error);
+      });
+    },
+
+    getApartmentImages(apartmentId) {
+
+      this.getImages();
+
+      this.images.forEach(image => {
+
+          if(image.apartment_id == apartmentId) {
+
+            this.apartmentImages.push(image);
+          }
+
+      })
+
+      return this.apartmentImages;
+    },
+
+    scrollLeft(array){
+      if(this.counter == 0){
+          console.log(this.counter);
+          this.counter = array.length - 1;
+          console.log(this.counter);
+      } else {
+          this.counter--;
+      }
+    },
+
+
+    scrollRight(array){
+        if(this.counter == array.length - 1){
+            this.counter = 0;
+        } else{
+            this.counter++;
+        }
+    },
+
 
   },
 
   mounted() {
     
     this.getApartmentsSponsorized();
+    //this.getImages();
+    //console.log(this.apartment.id);
+    console.log(this.getApartmentImages(this.apartment.id));
+
     
   },
 

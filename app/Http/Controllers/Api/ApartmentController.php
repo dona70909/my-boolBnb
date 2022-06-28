@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\ApartmentSponsorship;
+use App\Models\Image;
 use Carbon\Carbon;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::with(['services', 'sponsorships'])->findOrFail($id);
+        $apartment = Apartment::with(['services', 'sponsorships','apartmentSponsorship', 'images'])->findOrFail($id);
         return response()->json($apartment);
     }
     /**

@@ -46,17 +46,18 @@ export default {
 
     data() {
         return {
-        listAddress: [],
-        apartments: [],
-        search: "",
-        filteredApartments: [],
+
+            listAddress: [],
+            apartments: [],
+            search: "",
+            filteredApartments: [],
+            
         };
     },
 
     methods: {
         
         getApartments() {
-
         axios.get("/api/apartments").then((result) => {
                 //console.log(result.data.results);
                 this.apartments = result.data.results;
@@ -66,6 +67,7 @@ export default {
             console.error(error);
             });
         },
+
 
         //# Function chiamata ogmi volta che premo enter o clicco sul pulsante search
         //% invece di filtrare solo , deve rimandarmi alla pagina advamced search
@@ -131,6 +133,7 @@ export default {
     mounted() {
 
         this.getApartments();
+        
     },
 };
 </script>

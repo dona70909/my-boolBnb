@@ -29,3 +29,5 @@ Route::get('/services', 'Api\ServicesController@index');
 Route::post("/make/payment", "Api\PaymentController@makePayment")->name('payment');
 
 Route::post('/message', 'Api\MessageController@store');
+
+Route::get('/images', 'Api\ImagesController@index');
