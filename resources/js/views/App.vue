@@ -22,3 +22,15 @@ export default {
 };
 </script>
 
+<style lang="scss">
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            color: white;
+            text-decoration: none;
+        }
+    }
+</style>
+

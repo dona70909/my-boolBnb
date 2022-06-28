@@ -69,12 +69,14 @@ export default {
   #nav {
 
     background-color: blue;
+    color: red;
     height: 20vh;
     width: 100%;
     
 
     a {
         margin: 0 .5rem;
+        
     }
 
   }
