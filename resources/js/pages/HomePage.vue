@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid p-0">
-        <div class="row">
+
+        <div class="row mb-5">
             <div class="col-12 d-flex justify-content-center align-content-center ">
                 <!-- //!! div input search -->
                 <div class="input-search d-flex justify-content-center ">
@@ -15,8 +16,12 @@
                     </button>
                 </div>
             </div>
+        </div>
 
+        <!-- //!! QUI APPARTAMENTI SPONSORIZZATI -->
+        <div class="row mb-5 justify-content-center row-wrap-cards">
             <ApartmentSpons v-for="(apartment, index) in apartments" :key="'primo' + index" :apartment="apartment" :endDate="apartment.apartment_sponsorship[0]"/>
+            
         </div>
     </div>
 </template>
@@ -47,9 +52,9 @@ export default {
         axios
             .get("/api/apartments")
             .then((result) => {
-            //console.log(result.data.results);
-            this.apartments = result.data.results;
-            console.log(this.apartments);
+                //console.log(result.data.results);
+                this.apartments = result.data.results;
+                console.log(this.apartments);
             })
             .catch((error) => {
             console.error(error);
@@ -127,5 +132,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    
+    .row-wrap-cards {
+        gap: 5rem 1rem;
+    }
 </style>

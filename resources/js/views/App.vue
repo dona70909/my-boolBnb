@@ -32,5 +32,10 @@ export default {
             text-decoration: none;
         }
     }
+
+    p {
+        padding: 0;
+        margin:0;
+    }
 </style>
 
