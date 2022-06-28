@@ -85,7 +85,9 @@ class ApartmentController extends Controller
         $lat = $geocodedTomApi['results'][0]['position']['lat'];
         $lng = $geocodedTomApi['results'][0]['position']['lon'];
         //$apartments = Apartment::where('address', 'like', "%{$location}%")->get();
-        $apartments = Apartment::all();
+
+        $apartments = Apartment::with(['services', 'sponsorships','apartmentSponsorship'])->get();
+
         $filtered = [];
         foreach($apartments as $apartment) {
             $distance = self::getDistance($lat, $lng, $apartment->lat, $apartment->lng);
@@ -130,24 +132,24 @@ class ApartmentController extends Controller
             return compact('response');
         }
         /* //# controllo filtri null */
-        if(null !== $request->input('beds') || $request->input('beds') >= 0) {
+        if($request->input('beds') !==  null  || $request->input('beds') >= 0) {
             $beds = $request->input('beds');
         } else{
             $beds = 1;
         }
-        if(null !== $request->input('rooms') || $request->input('rooms') >= 0) {
+        if( $request->input('rooms') !==  null  || $request->input('rooms') >= 0) {
             $rooms = $request->input('rooms');
         } else{
             $rooms = 1;
         }
         /* //! default range */
-        if(null !== $request->input('distance') || $request->input('distance') >= 20000) {
+        if($request->input('distance') !==  null  || $request->input('distance') >= 20000) {
             $range = $request->input('distance');
         } else{
             $range = 20000;
         }
         /* //# NON inserisce l'id */
-        if(null !== $request->input('services')) {
+        if($request->input('services') !==  null ) {
             $services = $request->input('services');
         } else{
             $services = [];
@@ -161,7 +163,8 @@ class ApartmentController extends Controller
         $lat = $geocoded['results'][0]['position']['lat'];
         $lng = $geocoded['results'][0]['position']['lon'];
         //!!query di ricerca/ filtro per i servizi definiti sopra
-        $apartments = Apartment::with('services')
+
+        $apartments = Apartment::with('services','apartmentSponsorship')
         ->where([['room_number', '>=', $rooms],['bed_number', '>=', $beds]])
         ->where(function($query) use($services){
             foreach($services as $service) {
@@ -170,6 +173,7 @@ class ApartmentController extends Controller
                 });
             }
         })->get();
+
         $filtered = [];
         foreach($apartments as $apartment) {
             $distance = self::getDistance($lat, $lng, $apartment->lat, $apartment->lng);
@@ -178,9 +182,11 @@ class ApartmentController extends Controller
                 array_push($filtered, $apartment);
             };
         }
+
         usort($filtered, function($a, $b) {
             return $a->distance > $b->distance ? 1 : -1;
         });
+
         $response = [
             'result' => true,
             'data' => $filtered

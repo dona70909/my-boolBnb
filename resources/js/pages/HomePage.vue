@@ -25,7 +25,7 @@
 
         <!-- //!! QUI APPARTAMENTI SPONSORIZZATI -->
         <div class="row mb-5 justify-content-center row-wrap-cards">
-            <ApartmentSpons v-for="(apartment, index) in apartments" :key="'primo' + index" :apartment="apartment" :endDate="apartment.apartment_sponsorship[0]"/>
+            <ApartmentSpons v-for="(apartment, index) in apartments" :key="index" :apartment="apartment" />
             
         </div>
     </div>
@@ -40,6 +40,7 @@ export default {
     name: "HomePage",
 
     components: {
+
         ApartmentSpons,
     },
 
@@ -53,10 +54,10 @@ export default {
     },
 
     methods: {
+        
         getApartments() {
-        axios
-            .get("/api/apartments")
-            .then((result) => {
+
+        axios.get("/api/apartments").then((result) => {
                 //console.log(result.data.results);
                 this.apartments = result.data.results;
                 console.log(this.apartments);
@@ -97,9 +98,9 @@ export default {
                     }
                     )
                     .then((response) => {
-                    console.log("apiiiiiii");
-                    console.log(response.data.results);
-                    this.getAddresses(response.data.results);
+                        console.log("apiiiiiii");
+                        console.log(response.data.results);
+                        this.getAddresses(response.data.results);
                     })
                     .catch(function (error) {
                     console.log(error);
@@ -115,11 +116,8 @@ export default {
             this.listAddress = [];
 
             for (let i = 0; i < lengthArray; i++) {
-                this.listAddress.push(
-                array[i].address.municipality +
-                    " , " +
-                    array[i].address.countrySecondarySubdivision
-                );
+                
+                this.listAddress.push(array[i].address.streetName +" , " +  array[i].address.municipality );
             }
         },
 
@@ -131,6 +129,7 @@ export default {
     },
 
     mounted() {
+
         this.getApartments();
     },
 };

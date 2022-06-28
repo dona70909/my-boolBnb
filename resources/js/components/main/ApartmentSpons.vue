@@ -20,8 +20,9 @@
     </div>
 
     <div v-for="(sponsor, index) in apartment.apartment_sponsorship" :key="index">
-        <p >{{sponsor.end_date}}</p>
-        <i class="bi bi-star-fill"></i>
+          <div v-if="new Date(sponsor.end_date) > Date.now() ">
+            <i class="bi bi-star-fill"></i>
+          </div>
     </div>
 
   </div>
@@ -36,14 +37,14 @@ export default {
 
   name: "ApartmentSpons",
 
-  props: ["apartment", 'endDate'],
+  props: ["apartment"],
 
   data: function () {
     return {
 
         listService:[],
         today:"",
-        isSponsorized: false,
+        isSponsorized: null,
     }
   },
 
@@ -62,29 +63,23 @@ export default {
     
         this.apartment.apartment_sponsorship.forEach(element => {
 
-          if(element.end_date > this.today) {
+          if(new Date(element.end_date) > Date.now()) {
 
             return  this.isSponsorized = true;
+          } else {
+
+            return this.isSponsorized = false;
           }
           
         });
     },
 
-    getToday(){
-
-      return this.today = moment().format('YYYY-MM-DD hh:mm:ss') ;
-    }
 
   },
 
   mounted() {
     
-    //this.getToday();
-    this.today = moment().format('YYYY-MM-DD hh:mm:ss');
-    console.log(this.today);
     this.getApartmentsSponsorized();
-
-    this.getListServices();
     
   },
 
