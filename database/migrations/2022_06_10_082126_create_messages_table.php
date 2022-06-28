@@ -20,8 +20,8 @@ class CreateMessagesTable extends Migration
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')
             ->onUpdate('cascade');
 
-            $table->string('name');
-            $table->string('surname');
+            $table->string('name')->nullable();
+            $table->string('surname')->nullable();
             $table->string('email');
             $table->text('message_content');
             $table->timestamps();

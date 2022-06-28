@@ -20,6 +20,7 @@ class CreateApartmentsTable extends Migration
             ->onUpdate('cascade');
 
             $table->string('title',150);
+            $table->text('image')->nullable();
             $table->text('description');
             $table->smallInteger('squared_meters');
             $table->string('address',255);

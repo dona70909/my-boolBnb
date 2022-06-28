@@ -1,12 +1,11 @@
 <?php
 
 use App\Models\Apartment;
-use App\User;
+use App\Models\Image;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Http;
 
-class ApartmentsTableSeeder extends Seeder
+class ImagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,8 @@ class ApartmentsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $user_ids = User::pluck('id')->toArray();
+
+        $apartment_ids = Apartment::pluck('id')->toArray();
 
         $images = [
             'https://a0.muscache.com/im/pictures/e47c0a48-4f10-470d-aa86-66f79ae86f20.jpg?im_w=720',
@@ -51,61 +51,13 @@ class ApartmentsTableSeeder extends Seeder
             'https://a0.muscache.com/im/pictures/0816b65c-cfa7-4b92-a5b5-197c2f7ea0dd.jpg?im_w=720',
         ];
 
-         //list of real addresses
-        $addresses = [
-            "Piazza san Vito, Albano di Lucania", 
-            "Corso Manfredi Lucera, Foggia",
-            "Strada Provinciale Torremaggiore, Foggia",
-            "Via Damiano Chiesa, Roma",
-            'Via Plinio, Andria',
-            'Via Cola di Rienzo, Roma',
-            'Via Nicola Ricciard, Napoli',
-            'Via Costabella, Bardolino',
-            'Via Felice Cavallotti, Molfetta',
-            'Via Pietro Giannone, Bitonto',
-            'Via Piazzolla, Barletta',
-            'Via De Marco Carlo, Lecce',
-            'Via Antonio Ciccone, Saviano',
-            'Via Bartolomeo, Enna',
-            'Viale Cirenaica, Rimini', 
-            'Viale Derna, Rimini',
-            'Viale Dandolo, Bari',
-            'Viale Colombo, Ruvo di Puglia',
-            'Via Teofilo Folengo, Roma',
-            'Via Borgospesso, Milano',
-            'Vicolo Giardino, Milano',
-            'Via Romagnosi, Triggiano',
-            'Via Clerici, Milano ',
-            'Via Cheren, Bari',
-        ];
+        for ($i=0; $i < 50 ; $i++) {
 
-        for ($i=0; $i < 30 ; $i++) {
-            $newApartment= new Apartment();
-            $newApartment->user_id = $faker->randomElement($user_ids);
-            $newApartment->title = $faker->sentence(3);
-            $newApartment->image = $images[$i];
-            $newApartment->description = $faker->realText(255);
-            $newApartment->squared_meters = rand(30,500);
-            $newApartment->address = $addresses[rand(0,count($addresses)-1)];
+            $newImage = new Image();
+            $newImage->apartment_id = $faker->randomElement($apartment_ids);
+            $newImage->img_url = $faker->randomElement($images);
 
-
-             // TOM TOM
-            $response = Http::withoutVerifying()->get('https://api.tomtom.com/search/2/geocode/'.$newApartment->address.'.json', [
-                'key' => "9mpouF1u6K6aGgZJ1Q2cybl2HR9dyJcy",
-                'limit' => '1'
-            ]);
-
-            $coordinates = $response->json();
-
-            $newApartment->lat = $coordinates['results'][0]['position']['lat'];
-            $newApartment->lng = $coordinates['results'][0]['position']['lon'];
-
-            $newApartment->room_number = $faker->numberBetween(1, 10);
-            $newApartment->bed_number = $faker->numberBetween(1, 15);
-            $newApartment->bath_number = $faker->numberBetween(1, 5);
-            $newApartment->is_visible = $faker->boolean();
-            $newApartment->daily_price = $faker->randomFloat(2,120,5000);
-            $newApartment->save();
+            $newImage->save();
 
         }
     }
