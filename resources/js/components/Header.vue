@@ -1,13 +1,31 @@
 <template>
-  <section class="container-fluid bg-black">
-    <!-- Image and text -->
-      <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-          Bootstrap
+
+  <header class="">
+      <nav class="fixed-top my-navbar d-flex align-items-center justify-content-space-around" id="nav">
+        <!-- //% logo -->
+        <a class="my-navbar-logo " href="/">
+            <h1>Boolbnb</h1>
         </a>
-      </nav>
-  </section>
+
+        <a href="/admin/apartments">
+            <h1>Dashboard</h1>
+        </a>
+
+        <a v-if="$userEmail == ''" href="/register">
+            <h1>Registrati</h1>
+        </a>
+
+        <a v-if="$userEmail == ''"  href="/login">
+            <h1>Login</h1>
+        </a>
+
+        <a v-if="$userEmail != ''" href="#"  @click.prevent="logout()">
+          <h1> Logout </h1>
+        </a>
+
+    </nav>
+  </header>
+
 </template>
 
 
@@ -42,3 +60,23 @@ export default {
     },
 };
 </script>
+
+
+
+<style lang="scss">
+
+  //#NAV BAR STYLE WRAPPER
+  #nav {
+
+    background-color: blue;
+    height: 20vh;
+    width: 100%;
+    
+
+    a {
+        margin: 0 .5rem;
+    }
+
+  }
+  
+</style>

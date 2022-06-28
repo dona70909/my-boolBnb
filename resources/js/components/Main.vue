@@ -1,9 +1,9 @@
 <template>
-    <div class="container-fluid pt-5 px-0">
+    <main class="wrapper-main ">
         <keep-alive include="AdvancedSearch, HomePage" max="5">
             <router-view/>
         </keep-alive>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -12,5 +12,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+    main {
+        margin-top: 10rem;
+    }
 </style>

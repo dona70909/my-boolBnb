@@ -1,13 +1,9 @@
 <template>
-<div>
     <div class="container-fluid p-0">
         <div class="row">
-            <div class="col-12 p-0 d-flex justify-content-center align-content-center flex-wrap slider" id="jumbotron">
-
-        
+            <div class="col-12 d-flex justify-content-center align-content-center ">
                 <!-- //!! div input search -->
-
-                <div class="input-search d-flex justify-content-center align-content-center flex-wrap position-relative">
+                <div class="input-search d-flex justify-content-center ">
                     <input type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="getApartmentsFiltered" required/>
                     <div class="list-address-box">
                     <p class="hint-list" v-for="(addressHint, index) in listAddress" :key="index" @click="completer(index)">
@@ -23,8 +19,6 @@
             <ApartmentSpons v-for="(apartment, index) in apartments" :key="'primo' + index" :apartment="apartment" :endDate="apartment.apartment_sponsorship[0]"/>
         </div>
     </div>
-
-</div>
 </template>
 
 <script>
