@@ -30,9 +30,6 @@
 </template>
 
 <script>
-
-import moment from 'moment';
-
 export default {
 
   name: "ApartmentSpons",
@@ -43,7 +40,6 @@ export default {
     return {
 
         listService:[],
-        today:"",
         isSponsorized: null,
     }
   },
@@ -83,11 +79,6 @@ export default {
     
   },
 
-  watch:{
-    today(){
-      this.today;
-    }
-  }
 };
 </script>
 
