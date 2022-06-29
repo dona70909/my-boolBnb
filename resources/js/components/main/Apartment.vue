@@ -59,6 +59,7 @@ export default {
         return {
 
             isSponsorized: null,
+            counter:0,
             images:[],
         }
     },
@@ -79,10 +80,7 @@ export default {
             });
         },
 
-        getToday(){
 
-            return this.today = moment().format('YYYY-MM-DD hh:mm:ss') ;
-        },
 
         getImages(apartmentId) {
 
@@ -105,11 +103,30 @@ export default {
 
         },
 
+        scrollLeft(){
+            
+            if(this.counter == 0){
+                this.counter = this.images.length - 1;
+                
+            } else {
+                this.counter--;
+            }
+        },
+
+
+        scrollRight(){
+
+            if(this.counter == this.images.length - 1){
+                this.counter = 0;
+            } else{
+                this.counter++;
+            }
+        },
+
     },
 
     created() {
     
-        this.today = moment().format('YYYY-MM-DD hh:mm:ss');      
         this.getApartmentsSponsorized();
         this.getImages(this.apartment.id);
     

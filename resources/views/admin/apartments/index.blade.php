@@ -67,7 +67,6 @@
     <section class="container-fluid">
         
         <table class="table table-hover">
-        
             <thead class="text-center">
                 <tr>
                     <th scope="row" >Id</th>
