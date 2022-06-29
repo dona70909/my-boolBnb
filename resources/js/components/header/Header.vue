@@ -2,7 +2,7 @@
 
   <header class="nav-wrapper d-flex align-items-center  fixed-top">
 
-      <nav class="my-navbar d-flex  justify-content-between " >
+      <nav class="my-navbar d-flex  justify-content-between w-100">
 
         <div class="nav-bar-left d-flex">
             <a class="my-navbar-logo " href="/">

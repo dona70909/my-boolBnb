@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 
 mix.sass('resources/sass/app.scss', 'public/css').options( {processCssUrl: false} );
+mix.sass('resources/sass/navbar.scss', 'public/css').options( {processCssUrl: false} );
 
 
 
