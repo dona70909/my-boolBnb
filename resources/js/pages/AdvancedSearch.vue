@@ -4,11 +4,11 @@
 
         <!-- //!! row ricerca -->
         <div class="row mb-5 justify-content-center">
-            <div class="col-8">
+            <div class="col-5">
 
                 <div class="container-input-search d-flex justify-content-center">
 
-                    <input class="input-bar" type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="filteredSearch" required/>
+                    <input class="search-input" type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="filteredSearch" required/>
                     <!--//# solo di prova -->
                     <button class="align-self-center" @click="filteredSearch">
                         <i class="bi bi-search"></i>
@@ -209,11 +209,8 @@ export default {
             this.listAddress = [];
 
             for (let i = 0; i < lengthArray; i++) {
-            this.listAddress.push(
-                array[i].address.municipality +
-                " , " +
-                array[i].address.countrySecondarySubdivision
-            );
+                
+                this.listAddress.push(array[i].address.streetName +" , " +  array[i].address.municipality );
             }
         },
 
@@ -243,5 +240,29 @@ export default {
     .wrapper-apartments {
 
         gap: 5rem 1rem;
+    }
+
+
+    //#style search bar
+    
+    .search-input{
+
+        width: 100%;
+        border-radius: 13px;
+        padding: .8rem;
+        border: 3px solid blue;
+
+        &:focus {
+
+            border: 3px solid blue;
+            outline: none;
+        }
+
+        button {
+
+            border: 3px solid blue;
+            background:blue;
+            color:white;
+        }
     }
 </style>

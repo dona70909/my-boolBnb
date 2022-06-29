@@ -7,11 +7,6 @@
                 <div class="container-input-search d-flex justify-content-center">
 
                     <input class="input-bar" type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="getApartmentsFiltered" required/>
-                    <!--//# solo di prova -->
-                    <!-- <button class="align-self-center" @click="getApartmentsFiltered">
-                        <i class="bi bi-search"></i>
-                    </button> -->
-
                 </div>
 
                 <ul class="wrapper-hints-address" v-for="(addressHint, index) in listAddress" :key="index" @click="completer(index)">
