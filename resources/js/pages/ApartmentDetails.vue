@@ -19,7 +19,7 @@
                 <img v-else :src="'../storage/' + apartment.image" alt="image" />  -->
                 <img class="big-img" :src="apartment.image" alt="image">
             </div>
-            <img v-for="(image, index) in apartmentImages" :key="index" v-show="index < 4" class="col-3 small-img" :src="image.img_url" alt="img">
+                <img v-for="(image, index) in images" :key="index" v-show="index < 4" class="col-3 small-img" :src="image.img_url" alt="img"> 
         </div>
 
         <!-- //!! Deatils -->
@@ -130,7 +130,6 @@ export default {
     mounted() {
 
         this.email = this.$userEmail;
-        //console.warn(this.$route.params.id);
         this.getSingleApartment(this.$route.params.id);
         this.getImages(this.$route.params.id)
 
@@ -207,13 +206,19 @@ export default {
         /* `/images/apartment/${apartmentId}`
             !!migliorare get apartments's images
         */
-        getImages() {
+        getImages(apartmentId) {
 
-            axios.get("/api/images").then( response => {
+            axios.get("/api/images/apartment", {
+
+                params: {
+                    apartment_id: apartmentId,
+                },
+
+            }).then( response => {
 
                 this.images = response.data.results;
-                //console.log(response.data);
-                this.getApartmentImages();
+                console.log(response.data.results);
+                //this.getApartmentImages();
         
             })
 
@@ -223,22 +228,7 @@ export default {
 
         },
 
-        getApartmentImages() {
-
-        if(this.images.length > 0) {
-
-            this.images.forEach(image => {
-
-                if(image.apartment_id == this.apartment.id) {
-
-                    this.apartmentImages.push(image);
-                }
-
-            })
-        }
-
-        return this.apartmentImages;
-        },
+       
 
     },
 };

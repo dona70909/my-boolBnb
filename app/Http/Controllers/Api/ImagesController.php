@@ -44,14 +44,7 @@ class ImagesController extends Controller
      */
     public function show($id)
     {
-        //$apartments = Apartment::all();
-        $images = Image::all();
         
-        return response()->json(
-        [
-            'success' => true,
-            'results' => $images,
-        ]);
     }
 
     /**
@@ -75,6 +68,23 @@ class ImagesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filterImages(Request $request) {
+
+        if($request->input('apartment_id') !==  null ) {
+            $id = $request->input('apartment_id');
+        } else{
+            $id = [];
+        }
+
+        $images = Image::where('apartment_id' , $id)->get();
+
+        return response()->json(
+        [
+            'success' => true,
+            'results' => $images,
+        ]);
     }
 
     

@@ -21,17 +21,20 @@ Route::get('/apartments', 'Api\ApartmentController@index');
 Route::get('/apartments/single/{id}', 'Api\ApartmentController@show');
 
 
-
+// %SEARCH WIT DEFAULT INPUT VALUES AND 
+//#SEARCH FILTERED WITHE THE INPUT FROM THE USERS
 Route::get('/apartments/search', 'Api\ApartmentController@search');
 Route::get('/apartments/filteredsearch', 'Api\ApartmentController@filteredSearch');
+
+//%SERVICES CONTROLLER INDEX
 Route::get('/services', 'Api\ServicesController@index');
 
+//& check payment data and go to the store
 Route::post("/make/payment", "Api\PaymentController@makePayment")->name('payment');
 
+//# store message from any user and required email e content
 Route::post('/message', 'Api\MessageController@store');
 
 // !! non riesco a prendere le immagini relative ad un appartamento 
 //!! SONO STUPIDA!
-//Route::get('/images', 'Api\ApartmentController@apartmentImages');
-//Route::get('/images/apartment', 'Api\ImagesController@show');
-Route::get('/images', 'Api\ImagesController@index');
+Route::get('/images/apartment', 'Api\ImagesController@filterImages');

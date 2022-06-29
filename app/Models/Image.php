@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     public function apartments(){
-        return $this->belongsToMany('App\Models\Apartment'); 
+        return $this->belongsTo('App\Models\Apartment'); 
     }
 }

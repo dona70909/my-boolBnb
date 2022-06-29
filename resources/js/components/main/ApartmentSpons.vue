@@ -5,8 +5,9 @@
 
     <router-link class="wrapper-img mb-2 " :to="{ name: 'apartment-details', params: { id: apartment.id } }">
          <!-- //!! IMMAGINE -->
-          <img  v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image" />
-          <img  v-else :src="'../storage/' + apartment.image" alt="image" /> 
+          <!-- <img  v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image" />
+          <img  v-else :src="'../storage/' + apartment.image" alt="image" />  -->
+          <img :src="apartment.image" alt="">
     </router-link>
 
     <!--  <button @click="scrollRight()">
@@ -150,7 +151,7 @@ export default {
   created() {
     
     this.getApartmentsSponsorized();
-    this.getImages();
+    //this.getImages();
     //this.getApartmentImages();
   
     //console.log(this.getApartmentImages(this.apartment.id));
