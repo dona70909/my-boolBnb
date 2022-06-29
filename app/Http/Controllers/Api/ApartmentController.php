@@ -196,15 +196,5 @@ class ApartmentController extends Controller
 
     }
 
-    public function apartmentImages(Apartment $apartment) {
-
-        $images = Image::where('apartment_id','==', 10)->get();
-        
-        $response = [
-            'result' => true,
-            'data' => $images
-        ];
-        
-        return compact('response');
-    }
+    
 }

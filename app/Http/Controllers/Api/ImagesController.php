@@ -45,7 +45,7 @@ class ImagesController extends Controller
     public function show($id)
     {
         //$apartments = Apartment::all();
-        $images = Image::where('apartment_id','==', $id)->get();
+        $images = Image::all();
         
         return response()->json(
         [

@@ -3,7 +3,7 @@
     <div class="container-fluid px-5" >
 
         <!-- //!! titolo address -->
-        <div class="row mb-2">
+        <div class="row mb-2 wrapper-title">
             <div class="col-12">
                 <h4>{{apartment.title}}</h4>
                 <p>{{apartment.address}}</p>
@@ -11,30 +11,26 @@
         </div>
 
 
-        <!-- //!! immagine-->
+        <!-- //!! immagini-->
         <div class="row mb-4">
             <!-- //!! immagine -->
-            <div class="col-4">
+            <div class="col-6">
                 <!-- <img v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
                 <img v-else :src="'../storage/' + apartment.image" alt="image" />  -->
-                <img :src="apartment.image" alt="image">
+                <img class="big-img" :src="apartment.image" alt="image">
             </div>
-            <div class="col-8">
-                <div class="col-2">img</div>
-                <div class="col-2">img</div>
-                <div class="col-2">img</div>
-                <div class="col-2">img</div>
-            </div>
+            <img v-for="(image, index) in apartmentImages" :key="index" v-show="index < 4" class="col-3 small-img" :src="image.img_url" alt="img">
         </div>
 
         <!-- //!! Deatils -->
-        <div class="row wrapper-description mb-3">
-            <div class="col-6">
-                <div class="details-description border-bottom-2 d-flex justify-content-around">
+        <div class="row wrapper-description mb-5">
+            <div class="col-12">
+                <div class="details-description border-bottom-2 d-flex">
                     <h6 >Numero stanze {{apartment.room_number}}</h6>
                     <h6 >Numero posti letto {{apartment.bed_number}}</h6>
                     <h6 >Numero bagni {{apartment.bath_number}}</h6>
-                    <h6 > Prezzo {{apartment.price}}</h6>
+                    <h6 > Prezzo {{apartment.daily_price}}</h6>
+                    <h6 > {{apartment.squared_meters }} mq </h6>
                 </div>
 
                 <p>
@@ -46,7 +42,7 @@
         <!-- //!! MAPPA -->
         <div class="row mb-4">
               <!-- // !! mappa-->
-            <div class="col-5 my-map">
+            <div class="col-12 my-map">
                 <div class='map' id="map" ref="mapRef" ></div>
             </div>
         </div>
@@ -55,9 +51,9 @@
         <div class="row justify-content-center">
 
              <!-- //# trigger form -->
-            <div class="col-12 d-flex justify-content-start ">
-                <button class="btn btn-small btn-primary  rounded-pill mb-3 " @click="getDisplayNone()" @dblclick="getDisplayNone()">
-                    <h6 class="text-center">Contatta l'host</h6>
+            <div class="col-12 d-flex justify-content-start mb-5">
+                <button class="form-btn btn btn-small btn-primary  rounded-pill mb-3 d-flex align-items-center" @click="getDisplayNone()" @dblclick="getDisplayNone()">
+                    <h6 class="text-center m-0 p-0 ">Contatta l'host</h6>
                 </button>
             </div>
 
@@ -96,6 +92,7 @@
                 </div>
                 
             </div>
+
         </div>
     
     </div>
@@ -120,17 +117,22 @@ export default {
             surname:"",
             email:"",
             message_content:"",
+
             isSent:false,
 
             isNone:false,
+
+            images:[],
+            apartmentImages:[]
         };
     },
 
     mounted() {
+
         this.email = this.$userEmail;
-        console.warn(this.$route.params.id);
+        //console.warn(this.$route.params.id);
         this.getSingleApartment(this.$route.params.id);
-        //this.initializeMap();
+        this.getImages(this.$route.params.id)
 
     },
 
@@ -200,7 +202,44 @@ export default {
 
                 this.isNone = false;
             } 
+        },
+
+        /* `/images/apartment/${apartmentId}`
+            !!migliorare get apartments's images
+        */
+        getImages() {
+
+            axios.get("/api/images").then( response => {
+
+                this.images = response.data.results;
+                //console.log(response.data);
+                this.getApartmentImages();
+        
+            })
+
+            .catch((error) => {
+                console.error(error);
+            });
+
+        },
+
+        getApartmentImages() {
+
+        if(this.images.length > 0) {
+
+            this.images.forEach(image => {
+
+                if(image.apartment_id == this.apartment.id) {
+
+                    this.apartmentImages.push(image);
+                }
+
+            })
         }
+
+        return this.apartmentImages;
+        },
+
     },
 };
 </script>
@@ -208,31 +247,41 @@ export default {
 
 <style lang="scss" scoped>
 
-    #marker {
 
-        background-image: url('https://i.picsum.photos/id/799/200/300.jpg?hmac=q6DulPHgFwTpoeoXzeVRLJ7-2cd-K69VyeJoIpUM5eg');
+    .wrapper-title {
 
-        background-size: cover;
+        h4 {
 
-        width: 50px;
-
-        height: 70px;
-
+            font-weight: 700;
+            font-size: 3rem;
+        }
     }
 
     .map {
-
+        width: 100%;
         height: 300px;
         border-radius: 13px;
     }
     
     /* //!! row images */
-    img {
+    .big-img {
 
         width: 100%;
         border-bottom-left-radius: 13px;
         border-top-left-radius: 13px;
     }
+
+    .small-img {
+
+        width: 100%;
+        object-fit: cover;
+        //border-radius: 50px;
+        height: 200px;
+        padding: 1px;
+        
+    }
+
+    //!! row description
 
     .wrapper-description {
 
@@ -241,10 +290,13 @@ export default {
             h6 {
 
                 font-weight: bold;
+                margin: 0 1rem;
             }
         }
     }
 
+
+    /* //!! form wrap */
     .form-wrap {
 
         background-color: red;
@@ -252,4 +304,15 @@ export default {
         border-radius: 13px;
         padding: 4rem;
     }
+
+    
+    .form-btn {
+
+        h6 {
+
+            font-size: 1rem;
+            font-weight: 700;
+        }
+    }
+
 </style>

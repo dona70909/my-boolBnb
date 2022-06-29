@@ -32,5 +32,5 @@ Route::post('/message', 'Api\MessageController@store');
 
 //Route::get('/images', 'Api\ApartmentController@apartmentImages');
 
-//Route::get('/images', 'Api\ImagesController@show');
+Route::get('/images/apartment', 'Api\ImagesController@show');
 Route::get('/images', 'Api\ImagesController@index');
