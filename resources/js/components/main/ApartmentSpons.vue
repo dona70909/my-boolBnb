@@ -5,27 +5,34 @@
 
     <router-link class="wrapper-img mb-2 " :to="{ name: 'apartment-details', params: { id: apartment.id } }">
          <!-- //!! IMMAGINE -->
-          <!-- <img  v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image" />
-          <img  v-else :src="'../storage/' + apartment.image" alt="image" />  -->
-          <img :src="apartment.image" alt="">
+        <div  v-for="(image,index) in images" :key="index" class="corusel-images-wrapper">
+            <div v-show="index == counter" class="card-carousel">
+
+                <img :src="image.img_url" alt="image">
+
+                <div class="wrapper-buttons d-flex justify-content-between">
+
+                    <div class="button-wrapper-left ">
+                      <button class="btn-scroll mx-1" @click.prevent="scrollLeft()">
+                        <i class="bi bi-chevron-left"></i>
+                      </button> 
+                    </div>  
+
+                    <div class="button-wrapper-right">
+                      <button class="btn-scroll mx-1" @click.prevent="scrollRight()">
+                          <i class="bi bi-chevron-right"></i>
+                      </button>
+                    </div>
+
+                </div>
+                  
+                
+            </div>  
+        </div>
+
     </router-link>
 
-    <!--  <button @click="scrollRight()">
-        avanti
-    </button>
-
-    <button @click="scrollLeft()">
-      indietro
-    </button> -->
-
-    <!-- 
-        <div  v-for="(image,index) in apartmentImages" :key="index" class="corusel-images">
-          <div v-show="index == counter" class="box">
-              <img  v-if="image.img_url.startsWith('https://') || image.img_url.startsWith('http://')" :src="image.img_url" alt="image" />
-              <img  v-else :src="'../storage/' + img_url" alt="image" /> 
-          </div>  
-        </div>
-    -->
+    
 
     <!-- //!! descrizione card -->
     <div class="wrap-text ">
@@ -62,7 +69,9 @@ export default {
 
         listService:[],
         isSponsorized: null,
+
         images:[],
+        allImages:[],
         apartmentImages:[],
         counter:0,
     }
@@ -94,42 +103,43 @@ export default {
         });
     },
 
-    /* `/api/images/${this.apartment.id}` */
-    getImages() {
-      axios.get("/api/images/").then( response => {
+    getImages(apartmentId) {
 
-          //console.log(response.data.results);
+      axios.get("/api/images/apartment", {
+
+          params: {
+              apartment_id: apartmentId,
+          },
+
+      }).then( response => {
+
           this.images = response.data.results;
-
-          this.getApartmentImages();
-
+          //console.log(this.images);
+          
       })
 
       .catch((error) => {
-        console.error(error);
+          console.error(error);
       });
+
     },
 
-    getApartmentImages() {
+    //# da modificare non viene chiamata
+    getAllImages() {
 
-      if(this.images.length > 0) {
+      this.images.forEach(img => {
 
-        this.images.forEach(image => {
+        this.allImages.push(img.img_url); 
+      })
 
-            if(image.apartment_id == this.apartment.id) {
+      this.allImages.push(this.apartment.image);
 
-              this.apartmentImages.push(image);
-            }
-
-        })
-      }
-
-      return this.apartmentImages;
+      return this.allImages;
     },
 
     scrollLeft(){
       if(this.counter == 0){
-          this.counter = this.apartmentImages.length - 1;
+          this.counter = this.images.length - 1;
         
       } else {
           this.counter--;
@@ -138,7 +148,7 @@ export default {
 
 
     scrollRight(){
-        if(this.counter == this.apartmentImages.length - 1){
+        if(this.counter == this.images.length - 1){
             this.counter = 0;
         } else{
             this.counter++;
@@ -151,13 +161,15 @@ export default {
   created() {
     
     this.getApartmentsSponsorized();
-    //this.getImages();
-    //this.getApartmentImages();
-  
-    //console.log(this.getApartmentImages(this.apartment.id));
-
+    this.getImages(this.apartment.id);
+    //console.log(this.images);
     
   },
+
+  mounted() {
+
+    
+  }
 
 };
 </script>
@@ -172,9 +184,50 @@ export default {
         img {
             
             width: 100%;
-            height: 100%;
+            height: 200px;
             border-radius: 13px;
         }
+    }
+
+    .btn-scroll {
+
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgb(24, 8, 253);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .bi {
+
+        font-size: .6rem;
+        font-weight: 700;
+        color: white;
+      }
+    }
+
+    .card-carousel {
+
+      position: relative;
+
+      
+
+      .button-wrapper-left {
+
+        position: relative;
+        bottom: 100px;
+        //display: none;
+      }
+
+      .button-wrapper-right {
+
+        position: relative;
+        bottom: 100px;
+        //display: none;
+      }
     }
 
 </style>

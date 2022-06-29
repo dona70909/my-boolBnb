@@ -107,6 +107,7 @@ export default {
             goneWrong: null,
             listService:[],
             listAddress:[],
+            images:[]
         };
     },
 
@@ -221,6 +222,8 @@ export default {
             this.search = this.listAddress[index];
             this.getApartmentsFiltered();
         },
+
+        
     },
 
     created() {

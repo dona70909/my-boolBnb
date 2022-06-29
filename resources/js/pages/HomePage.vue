@@ -2,15 +2,15 @@
     <div class="container-fluid ">
 
         <div class="row mb-5 justify-content-center">
-            <div class="col-8">
+            <div class="col-5">
 
                 <div class="container-input-search d-flex justify-content-center">
 
                     <input class="input-bar" type="text" v-model="search" id="search" name="search" placeholder="Dove vuoi andare?" @keyup="autocomplete" @keypress.enter="getApartmentsFiltered" required/>
                     <!--//# solo di prova -->
-                    <button class="align-self-center" @click="getApartmentsFiltered">
+                    <!-- <button class="align-self-center" @click="getApartmentsFiltered">
                         <i class="bi bi-search"></i>
-                    </button>
+                    </button> -->
 
                 </div>
 
@@ -51,6 +51,7 @@ export default {
             apartments: [],
             search: "",
             filteredApartments: [],
+            images:[],
             
         };
     },
@@ -127,13 +128,14 @@ export default {
         completer(index) {
             this.search = this.listAddress[index];
             this.getApartmentsFiltered();
-            },
+        },
+
+        
     },
 
     mounted() {
 
         this.getApartments();
-        
     },
 };
 </script>
@@ -151,7 +153,7 @@ export default {
 
         width: 100%;
         border-radius: 13px;
-        padding: 1rem;
+        padding: .8rem;
         border: 3px solid blue;
 
         &:focus {

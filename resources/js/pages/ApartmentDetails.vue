@@ -12,14 +12,25 @@
 
 
         <!-- //!! immagini-->
-        <div class="row mb-4">
-            <!-- //!! immagine -->
+        <div class="row mb-4 row-wrapper-images">
+
+            <!-- //# immagine left -->
             <div class="col-6">
                 <!-- <img v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
                 <img v-else :src="'../storage/' + apartment.image" alt="image" />  -->
                 <img class="big-img" :src="apartment.image" alt="image">
             </div>
-                <img v-for="(image, index) in images" :key="index" v-show="index < 4" class="col-3 small-img" :src="image.img_url" alt="img"> 
+
+            <!-- //# images right -->
+            <div class="d-flex flex-wrap col-6 p-0">
+                <div class="d-flex  column-right w-100">
+                    <img v-for="(image, index) in images" :key="index" v-show="index < 2" class="small-img" :src="image.img_url" alt="img"> 
+                </div>
+
+                <div class="d-flex column-left w-100">
+                    <img v-for="(image, index) in images" :key="index" v-show="index < 4 && index >= 2" class="small-img" :src="image.img_url" alt="img"> 
+                </div>
+            </div>
         </div>
 
         <!-- //!! Deatils -->
@@ -123,7 +134,7 @@ export default {
             isNone:false,
 
             images:[],
-            apartmentImages:[]
+            
         };
     },
 
@@ -228,7 +239,6 @@ export default {
 
         },
 
-       
 
     },
 };
@@ -252,23 +262,40 @@ export default {
         height: 300px;
         border-radius: 13px;
     }
+    .row-wrapper-images {
+
+            //height: 450px;
     
-    /* //!! row images */
-    .big-img {
+            /* //!! row images */
+            .big-img {
 
-        width: 100%;
-        border-bottom-left-radius: 13px;
-        border-top-left-radius: 13px;
-    }
+                width: 100%;
+                border-bottom-left-radius: 13px;
+                border-top-left-radius: 13px;
+                //height: 200px;
+            }
 
-    .small-img {
+            .column-left {
 
-        width: 100%;
-        object-fit: cover;
-        //border-radius: 50px;
-        height: 200px;
-        padding: 1px;
-        
+                gap: .5rem .5rem;
+            }
+
+            .column-right {
+
+                gap: .5rem .5rem;
+
+                
+            }
+
+            .small-img {
+
+                width: 100%;
+                object-fit: cover;
+                border-radius: 13px;
+                height: 190px;
+            }
+
+
     }
 
     //!! row description
