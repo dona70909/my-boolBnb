@@ -4,7 +4,7 @@
 
       <nav class="my-navbar d-flex  justify-content-between w-100">
 
-        <div class="nav-bar-left d-flex">
+        <div class="nav-bar-left d-flex mx-3">
             <a class="my-navbar-logo " href="/">
                 <h1>Boolbnb</h1>
             </a>
@@ -14,7 +14,7 @@
             </a>
         </div>
 
-        <div class="d-flex nav-bar-right">
+        <div class="d-flex nav-bar-right mx-3">
           <a v-if="$userEmail == ''" href="/register">
               <h1>Registrati</h1>
           </a>
