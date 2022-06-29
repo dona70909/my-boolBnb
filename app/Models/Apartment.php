@@ -44,6 +44,10 @@ class Apartment extends Model
     {
         return $this->hasMany('App\Models\ApartmentSponsorship');
     } 
+
+    public function images() {
+        return $this->hasMany('App\Models\Image');
+    }
     
     /* //& relazione many to many tra apartments e services c'è la tabella ponte apartment_service */
     public function services(){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,14 @@ class ImagesController extends Controller
      */
     public function show($id)
     {
-        //
+        //$apartments = Apartment::all();
+        $images = Image::where('apartment_id','==', $id)->get();
+        
+        return response()->json(
+        [
+            'success' => true,
+            'results' => $images,
+        ]);
     }
 
     /**
