@@ -30,7 +30,8 @@ Route::post("/make/payment", "Api\PaymentController@makePayment")->name('payment
 
 Route::post('/message', 'Api\MessageController@store');
 
+// !! non riesco a prendere le immagini relative ad un appartamento 
+//!! SONO STUPIDA!
 //Route::get('/images', 'Api\ApartmentController@apartmentImages');
-
-Route::get('/images/apartment', 'Api\ImagesController@show');
+//Route::get('/images/apartment', 'Api\ImagesController@show');
 Route::get('/images', 'Api\ImagesController@index');
