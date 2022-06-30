@@ -1,5 +1,5 @@
 // Variables
-@import 'variables';
+@import '_variables';
 
 
 .wrapper-intro {
@@ -30,6 +30,6 @@
 }
 thead {
 
-    background-color: rgb(0, 68, 255);
+    background-color: $blueNav;
     color:white;
 }

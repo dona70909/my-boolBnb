@@ -1,6 +1,5 @@
 header {
-  background-color: rgb(255, 255, 255);
-  color: red;
+  background-color: #003580;
   height: 15vh;
   width: 100%;
 }
@@ -8,10 +7,11 @@ header {
 header a {
   margin: 0 0.5rem;
   padding: 0;
+  color: white;
 }
 
 header a:hover {
-  color: rgb(8, 84, 248);
+  color: white;
 }
 
 header a h1 {
@@ -24,11 +24,15 @@ header #my-drop-logout {
 }
 
 header #my-drop-logout:hover {
-  background-color: blue;
+  background-color: #003580;
+}
+
+header #my-drop-logout:hover #my-drop-logout-item {
+  color: white;
 }
 
 header #my-drop-logout-item {
-  color: blue;
+  color: #003580;
 }
 
 header #my-drop-logout-item:hover {

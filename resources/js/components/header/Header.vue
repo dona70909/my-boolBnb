@@ -8,7 +8,7 @@
             <a class="my-navbar-logo " href="/">
                 <h1>Boolbnb</h1>
             </a>
-
+            
             <a v-if="$userEmail != ''"  href="/admin/apartments">
                 <h1>Dashboard</h1>
             </a>
@@ -71,16 +71,23 @@ export default {
 
 <style lang="scss">
 
+
+
   //#NAV BAR STYLE WRAPPER
   header {
 
-    background-color: blue;
-    color: red;
+    background-color: #003580;
     height: 15vh;
     width: 100%;
     
     a {
         margin: 0 .5rem;
+        color: white;
+
+        &:hover {
+
+          color: white;
+        }
         
     }
 

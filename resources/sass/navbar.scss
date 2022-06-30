@@ -1,12 +1,11 @@
 // Variables
-@import 'variables';
+@import '_variables';
 
 
   //#NAV BAR STYLE WRAPPER
     header {
 
-        background-color: rgb(255, 255, 255);
-        color: red;
+        background-color: $blueNav;
         height: 15vh;
         width: 100%;
         
@@ -14,10 +13,11 @@
 
             margin: 0 .5rem;
             padding: 0;
+            color: white;
 
             &:hover {
 
-                color: rgb(8, 84, 248);
+                color: white;
             }
 
             h1 {
@@ -35,18 +35,25 @@
 
             &:hover {
 
-                background-color: blue;
+                background-color: $blueNav;
             }
+
+            &:hover #my-drop-logout-item {
+
+                color: white;
+            }
+
         }
 
         #my-drop-logout-item {
 
-            color: blue;
+            color: $blueNav;
 
             &:hover {
 
                 color: white;
             }
+
         }
 
 
