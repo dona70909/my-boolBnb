@@ -1,0 +1,22 @@
+.box-images {
+  border: 4px dashed rgb(189, 26, 26);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-images input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 0;
+}
+
+.box-images #singleImage {
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+

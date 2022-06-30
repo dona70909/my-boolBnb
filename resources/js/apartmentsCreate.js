@@ -5,6 +5,8 @@ import axios from 'axios';
 let api_key = process.env.MIX_TOM_KEY;
 
 
+
+
 //# prendo gli input tramite id dal form di blade
 let inputAddress = document.getElementById('address');
 
@@ -110,4 +112,11 @@ function writingAddressList(list, array) {
 
     });
 };
+
+$(document).ready(function(){
+
+    $('box-images input').change(function () {
+    $('box-images p').text(this.files.length + " file(s) selected");
+    });
+});
 

@@ -2178,6 +2178,11 @@ function writingAddressList(list, array) {
 }
 
 ;
+$(document).ready(function () {
+  $('box-images input').change(function () {
+    $('box-images p').text(this.files.length + " file(s) selected");
+  });
+});
 
 /***/ }),
 
