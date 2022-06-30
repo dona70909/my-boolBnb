@@ -8,12 +8,7 @@
             <h1>pannello sponsorships</h1>
             <ul>
 
-                {{--  @dump($sponsorships) --}}
-                {{-- @foreach ($sponsorships->apartmentSponsorship as $item)
-                    <li>
-                        {{$item}}
-                    </li>
-                @endforeach   --}}
+
             </ul>
         </div>
     </div>
