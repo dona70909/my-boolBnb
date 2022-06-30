@@ -13,7 +13,7 @@
                     <div class="box-title d-flex flex-column mb-4">
                         {{-- %title --}}
                         <label for="title">Inserisci un titolo per il tuo appartamento*</label>
-                        <input class="rounded-pill p-3 border-none" type="text" name="title" name="title" value="{{ old('title') ? old('title') : '' }}"
+                        <input class="border-none" type="text" name="title" name="title" value="{{ old('title') ? old('title') : '' }}"
                         placeholder="Inserisci il titolo">
                         @error('title')
                             <div class="alert alert-danger">
