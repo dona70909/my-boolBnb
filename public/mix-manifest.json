@@ -2,6 +2,7 @@
     "/js/admin.js": "/js/admin.js",
     "/css/app.css": "/css/app.css",
     "/css/navbar.css": "/css/navbar.css",
+    "/css/table.css": "/css/table.css",
     "/js/apartmentsCreate.js": "/js/apartmentsCreate.js",
     "/js/front.js": "/js/front.js"
 }

@@ -5,7 +5,7 @@
 
     <router-link class="wrapper-img mb-2 " :to="{ name: 'apartment-details', params: { id: apartment.id } }">
          <!-- //!! IMMAGINE -->
-        <div  v-for="(image,index) in images" :key="index" class="corusel-images-wrapper">
+        <div v-show="images.length > 0"  v-for="(image,index) in images" :key="index" class="corusel-images-wrapper">
             <div v-show="index == counter" class="card-carousel">
 
                 <img :src="image.img_url" alt="image">
@@ -28,6 +28,10 @@
                   
                 
             </div>  
+        </div>
+
+        <div v-show="images.length === 0" class="mb-2">
+            <img :src="apartment.image" alt="image">
         </div>
 
     </router-link>

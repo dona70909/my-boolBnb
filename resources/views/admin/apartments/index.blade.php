@@ -7,18 +7,15 @@
     {{-- !!! LINK SOPRA  --}}
     <div class="container-fluid">
         <div class="row mb-5">
-            <div class="col-12 text-center col-md-6 d-md-flex">
-                <h4 class=" mb-0 mt-0">Benvenuto/a {{Auth::user()['name']}} !</h4>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="d-flex justify-content-center mt-2 mt-md-0">
-                    <div class="box m-0" style=" width: 300px">
-                        <a class=" text-decoration-none d-flex justify-content-center fs-5 d-md-flex" href="{{route('admin.apartments.create')}}">
-                            Crea un appartamento
-                            <div id="icon"><i class="fas fa-arrow-right"></i></div>
-                        </a>
-                    </div>
-                </div>
+            <div class="col-12 wrapper-intro">
+                @if (str_ends_with(Auth::user()['name'], 'a')) 
+                    <h4> Benvenuta {{Auth::user()['name']}}</h4>
+                @else
+                    <h4> Benvenuto {{Auth::user()['name']}}</h4>
+                @endif
+                <p>
+                    Rivedi i tuoi appartamenti 
+                </p>
             </div>
         </div>
     </div>
@@ -66,7 +63,7 @@
     {{-- !! TABELLA --}}
     <section class="container-fluid">
         
-        <table class="table table-hover">
+        <table class="table table-hover " id="my-table">
             <thead class="text-center">
                 <tr>
                     <th scope="row" >Id</th>
@@ -162,11 +159,5 @@
 @endsection
 
 @section('style')
-    <style>
-        thead {
-
-            background-color: blue;
-            color:white;
-        }
-    </style>
+    <link rel="stylesheet"  href="{{ asset('css/table.css') }}" >
 @endsection
