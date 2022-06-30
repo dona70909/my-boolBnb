@@ -41,9 +41,9 @@
             </a>
 
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-right" id="my-drop-logout" aria-labelledby="navbarDropdown">
 
-                <a class="text-decoration-none d-flex justify-content-center align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a id="my-drop-logout-item" class="text-decoration-none d-flex justify-content-center align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <h1>{{ __('Logout') }}</h1>
                 </a>
 
