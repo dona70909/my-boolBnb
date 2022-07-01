@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Message;
 use App\Models\ApartmentSponsorship;
+use App\Models\Image;
 use App\Models\Service;
 use App\Models\Sponsorship;
 
@@ -64,18 +65,20 @@ class ApartmentController extends Controller
             'bed_number'=> 'required',
             'bath_number'=>'required',
             'is_visible'=>'required',
+          
             'services' => 'required|exists:services,id',
             'daily_price'=>'required|numeric',
         ]);
 
         $data = $request->all();
         $apartment = new Apartment();
+        
+        $images = array();
+
+
+       
 
         $data['user_id'] = Auth::user()->id;
-
-        //% upload image storage manually
-        $apartment->image = Storage::put('uploads',  $data['image']);
-        //$apartment->image = $data['image'];
 
         // TOM TOM
         $response = Http::withoutVerifying()->get('https://api.tomtom.com/search/2/geocode/'.rawurlencode($data['address']).'.json', [
@@ -83,23 +86,30 @@ class ApartmentController extends Controller
             'limit' => '1'
         ]);
 
-        // # verifica response api
-
-
+        
         $coordinates = $response->json();
-        //dd($coordinates);
+        
         $apartment->lat = $coordinates['results'][0]['position']['lat'];
-        $apartment->lng = $coordinates['results'][0]['position']['lon'];
-
-        // # print answer json
-        //dd($coordinates);
+        $apartment->lng = $coordinates['results'][0]['position']['lon']; 
 
         $apartment->fill($data);
         $apartment->image = Storage::put('uploads',$data['image']);
         $apartment->save();
         $apartment->services()->sync($data['services']);
 
-        return redirect()->route('admin.apartments.index' , ['apartment'=>$apartment])->with('message', 'Appartamento '. $apartment->title  .' creato correttamente');
+        if($imagesArray = $request->file('images')) {
+
+            foreach ($imagesArray as $image) {
+                $apartmentImages = new Image();
+                $apartmentImages->apartment_id = $apartment->id;
+                $apartmentImages->img_url = Storage::put('uploads',$image);
+    
+                $apartmentImages->save();
+    
+            };
+        }
+
+        return redirect()->route('admin.apartments.index' , ['apartment'=>$apartment, 'apartmentImages' => $apartmentImages])->with('message', 'Appartamento '. $apartment->title  .' creato correttamente');
     }
 
     /**
@@ -176,6 +186,7 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->services()->detach();
+        
         // $apartment->sponsorships()->detach();
         $apartment->delete();
         return redirect()->route('admin.apartments.index')->with('status',"Hai cancellato l'appartamento: ". $apartment->titolo);
