@@ -1,6 +1,21 @@
 // Variables
 @import '_variables';
 
+.wrapper-form {
+
+    padding: 3rem 7rem;
+
+    form{
+
+        background-color:rgb(243, 243, 243);
+        margin: 0 3rem;
+        padding: 1.5rem ;
+        box-shadow:4rem 4rem $blueNav;
+    }
+
+}
+
+
 
 .box-images {
 

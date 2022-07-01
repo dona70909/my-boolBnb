@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center wrapper-form">
             <form action="{{route('admin.apartments.update',$apartment)}}" method="POST" enctype="multipart/form-data" class="col-12 d-flex flex-wrap">
                 @csrf
                 @method('PUT')
@@ -170,7 +170,9 @@
                     </div>
                 </div>
             
-                <button class="col-2 rounded-pill btn-primary">Submit</button>
+                <div class="col-12 d-flex justify-content-end">
+                    <button class="col-2 btn-primary">Edit</button>
+                </div>
             </form>
         </div>
     </section>

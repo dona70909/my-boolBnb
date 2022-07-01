@@ -1,3 +1,14 @@
+.wrapper-form {
+  padding: 3rem 7rem;
+}
+
+.wrapper-form form {
+  background-color: rgb(243, 243, 243);
+  margin: 0 3rem;
+  padding: 1.5rem;
+  box-shadow: 4rem 4rem #003580;
+}
+
 .box-images {
   border: 4px dashed #003580;
   height: 200px;
