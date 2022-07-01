@@ -8,13 +8,7 @@
             <h1 class="fw-bolder">Boolbnb</h1>
         </a>
 
-        <a href="{{route('admin.apartments.index')}}">
-            <h1>Dashboard</h1>
-        </a>
-
-        <a href="{{route('admin.apartments.create')}}">
-            <h1>Inserisci un appartmento</h1>
-        </a>
+        
     </div>
 
 
@@ -29,7 +23,7 @@
         
             @if (Route::has('register'))
                 
-                <a class="nav-link" href="{{ route('register') }}">
+                <a class="my-nav-link" href="{{ route('register') }}">
                     <h1> {{ __('Register') }} </h1>
                 </a>
                 
@@ -38,6 +32,14 @@
 
             <a id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 <h1>{{ Auth::user()->name }} </h1>
+            </a>
+
+            <a href="{{route('admin.apartments.index')}}">
+                <h1>Dashboard</h1>
+            </a>
+    
+            <a href="{{route('admin.apartments.create')}}">
+                <h1>Inserisci un appartmento</h1>
             </a>
 
 
