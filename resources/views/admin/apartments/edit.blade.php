@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '- Inserisci un nuovo appartamento')
+@section('title', '- Edita appartamento')
 
 @section('content')
     <section class="container-fluid">
@@ -63,7 +63,7 @@
                             {{-- # stanze  --}}
                             <div class="box-number-room ">
                                 <div class="my-form-label" for="room_number"> Numero stanze * </div>
-                                <input type="text" id="room_number"  name="room_number" placeholder="Numero stanze" value="{{ old('room_number') ? old('room_number') : '' }}" required>
+                                <input type="text" id="room_number"  name="room_number" placeholder="Numero stanze" value="{{$apartment->room_number}}" required>
                                 @error('room_number')
                                     <div class="alert alert-danger">
                                         {{ $message }}
@@ -141,7 +141,7 @@
                     <div class="box-addresses d-flex flex-column">
                         {{--  & address + hints --}}
                         <label class="form-check-label" for="address"> Indirizzo * </label>
-                        <input autocomplete="on"  placeholder="Es. Via del corso" type="text" class=" h-50" id="address" name="address" value="{{$apartment->address}} " required>
+                        <input autocomplete="on"  placeholder="Es. Via del corso" type="text" class=" h-50" id="address" name="address" value="{{$apartment->address}}" required>
                         {{-- % lista suggerimenti   --}}
                         <ul id="addressList" class="suggested-address">
                         </ul>
