@@ -169,7 +169,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 d-flex justify-content-end">
+                <div class="col-12 d-flex justify-content-end my-submit-btn">
                     <button class="col-2 btn-primary">Carica</button>
                 </div>
             </form>

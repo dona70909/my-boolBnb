@@ -2,10 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center my-cont" id="style-register">
-        <div class="col-md-8">
-            <div class="card rounded-3">
-                <div class="card-header rounded-3 text-center">{{ __('Registrati su BOOLBNB') }}</div>
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 my-auth-forms">
+            
+            <div class="card">
+
+                {{-- # TITOLO FORM --}}
+                <div class="card-header rounded-3 text-center"> Boolbnb </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -19,6 +23,7 @@
                             </div>
                         @endif
 
+                        {{-- # name --}}
                         <div class="form-group row m-2">
                             <label for="name" class="col-md-4 col-form-label text-md-right color">{{ __('Nome:') }} <span class='required'>*</span> </label>
 
@@ -33,6 +38,7 @@
                             </div>
                         </div>
 
+                        {{-- # surname --}}
                         <div class="form-group row m-2">
                             <label for="surname" class="col-md-4 col-form-label text-md-right color">Cognome: <span class="required">*</span></label>
 
@@ -41,6 +47,7 @@
                             </div>
                         </div>
 
+                        {{-- # date --}}
                         <div class="form-group row m-2">
                             <label for="date_of_birth" class="col-md-4 col-form-label text-md-right color">Data di nascita:</label>
 
@@ -49,6 +56,7 @@
                             </div>
                         </div>
 
+                        {{-- # email --}}
                         <div class="form-group row m-2">
                             <label for="email" class="col-md-4 col-form-label text-md-right color">{{ __('E-Mail Address:') }} <span class="required">*</span> </label>
 
@@ -63,6 +71,7 @@
                             </div>
                         </div>
 
+                        {{-- # password --}}
                         <div class="form-group row m-2">
                             <label for="password" class="col-md-4 col-form-label text-md-right color">{{ __('Password:') }} <span class="required">*</span> </label>
 
@@ -77,7 +86,7 @@
                             </div>
                         </div>
 
-
+                        {{-- # conf pass --}}
                         <div class="form-group row m-2">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right color">{{ __('Conferma Password:') }} <span class="required">*</span> </label>
 
@@ -85,13 +94,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        {{-- # warn message --}}
                         <div class="row text-center m-3">
                             <p>I campi contrassegnati da un * sono obbligatori</p>
                         </div>
 
-                        <div class="form-group row mb-0 d-flex justify-content-center align-items-center">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="color: whitesmoke">
+                        {{-- # btn register --}}
+                        <div class="form-group d-flex justify-content-center align-items-center">
+                            <div class="my-submit-btn col-2">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
@@ -102,4 +114,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('style')
+<link rel="stylesheet"  href="{{ asset('css/authforms.css') }}" >
 @endsection

@@ -30,7 +30,7 @@
             </div>  
         </div>
 
-        <div v-show="images.length === 0" class="mb-2">
+        <div v-show="images.length === 0" class="mb-3">
             <img :src="apartment.image" alt="image">
         </div>
 

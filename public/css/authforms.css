@@ -1,0 +1,9 @@
+.my-auth-forms .card {
+  box-shadow: 3rem -3rem #003580;
+  margin-top: 5rem;
+}
+
+.my-auth-forms .my-submit-btn button {
+  box-shadow: 0.5rem 0.5rem #febb02;
+}
+

@@ -9,6 +9,10 @@
   box-shadow: 4rem 4rem #003580;
 }
 
+.wrapper-form form .my-submit-btn button {
+  box-shadow: 0.5rem 0.5rem #febb02;
+}
+
 .box-images {
   border: 4px dashed #003580;
   height: 200px;

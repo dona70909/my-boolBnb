@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container my-cont">
-    <div class="row justify-content-center" id="style-login">
-        <div class="col-md-8">
+    <div class="row justify-content-center">
+        <div class="col-md-8 my-auth-forms">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -11,6 +11,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        {{-- # email --}}
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right m-2 color">{{ __('E-Mail Address:') }}</label>
 
@@ -25,6 +26,7 @@
                             </div>
                         </div>
 
+                        {{-- # password --}}
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right m-2 color">{{ __('Password:') }}</label>
 
@@ -39,30 +41,34 @@
                             </div>
                         </div>
 
+                        {{-- # remember me --}}
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                    <label class="form-check-label fw-bolder m-0 p-0" for="remember">
+                                        Seleziona {{ __('Remember Me') }} per ottenere un accesso più veloce .
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="color: whitesmoke">
+                        {{-- # login --}}
+                        <div class="form-group row justify-content-center">
+                            <div class="col-2 my-submit-btn mb-2">
+                                <button type="submit" class="btn btn-primary my-btn-submit">
                                     {{ __('Login') }}
                                 </button>
+                            </div>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                            @if (Route::has('password.request'))
+                                <div class="col-12 d-flex justify-content-center">
+                                    <a class="btn btn-link " href="{{ route('password.request') }}">
                                         {{ __('Password dimenticata?') }}
                                     </a>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                         </div>
                     </form>
                 </div>
@@ -70,4 +76,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('style')
+<link rel="stylesheet"  href="{{ asset('css/authforms.css') }}" >
 @endsection

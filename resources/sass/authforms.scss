@@ -1,0 +1,22 @@
+// Variables
+@import '_variables';
+
+
+.my-auth-forms {
+
+    .card {
+
+        box-shadow: 3rem -3rem  $blueNav; 
+
+        //box-shadow: 3rem 3rem  $blueNav; 
+        margin-top: 5rem;
+    }
+    
+    .my-submit-btn {
+
+        button {
+
+            box-shadow: .5rem .5rem $goldBtn;
+        }
+    }
+}
