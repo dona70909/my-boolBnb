@@ -74,8 +74,8 @@ class ApartmentController extends Controller
         $data['user_id'] = Auth::user()->id;
 
         //% upload image storage manually
-        //$apartment->image = Storage::put('uploads',  $data['image']);
-        $apartment->image = $data['image'];
+        $apartment->image = Storage::put('uploads',  $data['image']);
+        //$apartment->image = $data['image'];
 
         // TOM TOM
         $response = Http::withoutVerifying()->get('https://api.tomtom.com/search/2/geocode/'.rawurlencode($data['address']).'.json', [

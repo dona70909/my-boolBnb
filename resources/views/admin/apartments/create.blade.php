@@ -128,7 +128,7 @@
                         {{-- %image --}}
                         {{-- click here or drag here your images for preview and set userprofile_picture data --}}
                         <label for="singleImage">Inserisci altre immagini</label>
-                        <input type="file" class="form-control" id="singleImage"  name="images[]" multiple required>
+                        <input type="file" class="form-control" id="singleImage"  name="images[]" multiple >
                         
                         @error('image')
                             <div class="alert alert-danger">

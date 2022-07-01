@@ -1,12 +1,12 @@
 // Variables
-@import 'variables';
+@import '_variables';
 
 
 .box-images {
 
-    border: 4px dashed rgb(189, 26, 26);
+    border: 4px dashed $blueNav;
     height: 200px;
-    
+    padding: 1rem;
 
     display: flex;
     flex-direction: column;
