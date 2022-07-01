@@ -65,7 +65,6 @@ class ApartmentController extends Controller
             'bed_number'=> 'required',
             'bath_number'=>'required',
             'is_visible'=>'required',
-          
             'services' => 'required|exists:services,id',
             'daily_price'=>'required|numeric',
         ]);
@@ -74,9 +73,6 @@ class ApartmentController extends Controller
         $apartment = new Apartment();
         
         $images = array();
-
-
-       
 
         $data['user_id'] = Auth::user()->id;
 
@@ -170,11 +166,33 @@ class ApartmentController extends Controller
             'daily_price'=>'required|numeric',
         ]);
         $data = $request->all();
+
         $apartment->update($data);
-        $apartment->image = Storage::put('uploads',$data['image']);
+
+        if(isset($data["image"])){
+            $apartment->image = Storage::put('uploads',$data["image"]);
+        }
+
+        /* $apartment->image = Storage::put('uploads',$data['image']); */
+
         $apartment->services()->sync($data['services']);
+
         $apartment->save();
-        return redirect()->route('admin.apartments.show' , ['apartment'=>$apartment])->with('message', 'Appartamento '. $apartment->title  .' editato correttamente');
+
+        if($imagesArray = $request->file('images')) {
+
+            foreach ($imagesArray as $image) {
+                $apartmentImages = new Image();
+                $apartmentImages->apartment_id = $apartment->id;
+                $apartmentImages->img_url = Storage::put('uploads',$image);
+    
+                $apartmentImages->save();
+    
+            };
+        }
+
+
+        return redirect()->route('admin.apartments.show' , ['apartment'=>$apartment, 'apartmentImages' => $apartmentImages])->with('message', 'Appartamento '. $apartment->title  .' editato correttamente');
     }
 
     /**
