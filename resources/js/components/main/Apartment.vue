@@ -7,7 +7,8 @@
         <div  v-for="(image,index) in images" :key="index" class="corusel-images-wrapper">
             <div v-show="index == counter" class="card-carousel">
 
-                <img :src="image.img_url" alt="image">
+                <img v-if="image.img_url.startsWith('https://') || image.img_url.startsWith('http://')" :src="image.img_url" alt="image"/>
+                <img v-else :src="'../storage/' + image.img_url" alt="image" /> 
 
                 <div class="wrapper-buttons d-flex justify-content-between">
 

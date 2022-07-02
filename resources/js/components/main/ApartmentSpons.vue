@@ -5,10 +5,11 @@
 
     <router-link class="wrapper-img mb-2 " :to="{ name: 'apartment-details', params: { id: apartment.id } }">
          <!-- //!! IMMAGINE -->
-        <div v-show="images.length > 0"  v-for="(image,index) in images" :key="index" class="corusel-images-wrapper">
+        <div v-show="images.length > 1"  v-for="(image,index) in images" :key="index" class="corusel-images-wrapper">
             <div v-show="index == counter" class="card-carousel">
 
-                <img :src="image.img_url" alt="image">
+                <img v-if="image.img_url.startsWith('https://') || image.img_url.startsWith('http://')" :src="image.img_url" alt="image"/>
+                <img v-else :src="'../storage/' + image.img_url" alt="image" /> 
 
                 <div class="wrapper-buttons d-flex justify-content-between">
 
@@ -30,8 +31,10 @@
             </div>  
         </div>
 
-        <div v-show="images.length === 0" class="mb-3">
-            <img :src="apartment.image" alt="image">
+        <!-- show the front image if carousel is empty or equal to one -->
+        <div v-show="images.length === 0 || images.length === 1" class="mb-3">
+            <img v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
+            <img v-else :src="'../storage/' + apartment.image" alt="image" /> 
         </div>
 
     </router-link>

@@ -16,9 +16,9 @@
 
             <!-- //# immagine left -->
             <div class="col-6">
-                <!-- <img v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
-                <img v-else :src="'../storage/' + apartment.image" alt="image" />  -->
-                <img class="big-img" :src="apartment.image" alt="image">
+                <img class="big-img" v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
+                <img  class="big-img" v-else :src="'../storage/' + apartment.image" alt="image" />  
+                <!-- <img class="big-img" :src="apartment.image" alt="image"> -->
             </div>
 
             <!-- //# images right -->
