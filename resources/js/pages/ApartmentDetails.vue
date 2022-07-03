@@ -1,6 +1,5 @@
 <template>
-<div>
-    <div class="container-fluid px-5" >
+<div class="container-fluid px-5 " >
 
         <!-- //!! titolo address -->
         <div class="row mb-2 wrapper-title">
@@ -17,8 +16,8 @@
             <!-- //# immagine left -->
             <div class="col-6">
                 <img class="big-img" v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
-                <img  class="big-img" v-else :src="'../storage/' + apartment.image" alt="image" />  
-                <!-- <img class="big-img" :src="apartment.image" alt="image"> -->
+                <img  class="big-img" v-else :src="'../storage/' + apartment.image" alt="image" /> 
+                <!-- <img class="big-img" :src="apartment.image" alt="image">  -->
             </div>
 
             <!-- //# images right -->
@@ -50,11 +49,11 @@
             </div>
         </div>
 
-        <!-- //!! MAPPA -->
+        <!-- //!! MAP-->
         <div class="row mb-4">
-              <!-- // !! mappa-->
+              <!-- // !! map-->
             <div class="col-12 my-map">
-                <div class='map' id="map" ref="mapRef" ></div>
+                <div class='map' id="map"  ref="mapRef"  ></div>
             </div>
         </div>
 
@@ -107,8 +106,6 @@
         </div>
     
     </div>
-    
-</div>
 </template>
 
 
@@ -138,6 +135,7 @@ export default {
         };
     },
 
+  
     mounted() {
 
         this.email = this.$userEmail;
@@ -153,9 +151,12 @@ export default {
                 
                 this.apartment = result.data;
                 
-                this.initializeMap(this.apartment.lat,this.apartment.lng);
 
-                //console.log(this.initializeMap(this.apartment.lat,this.apartment.lng));
+                console.log('sono qui');
+                console.warn(this.apartment);
+                console.warn(this.apartment.lat);
+                this.initializeMap(this.apartment.lat,this.apartment.lng);
+    
             })
             .catch((error) => {
                 console.warn(error);
@@ -164,7 +165,9 @@ export default {
 
         initializeMap(lat,lon) {
 
-            const map = tt.map({
+            //const tt = window.tt; 
+
+            this.map = tt.map({
                 key: "9mpouF1u6K6aGgZJ1Q2cybl2HR9dyJcy",
                 container: this.$refs.mapRef,
                 center: [lon, lat],
@@ -172,10 +175,12 @@ export default {
                 //style: 'tomtom://vector/1/basic-main',
             });
 
-            new tt.Marker().setLngLat([lon, lat]).addTo(map);
+            console.warn(this.map);
+
+            new tt.Marker().setLngLat([lon, lat]).addTo(this.map);
 
 
-            this.map = Object.freeze(map);
+            this.map = Object.freeze(this.map);
         },
         
         sendMessage() {
@@ -258,6 +263,7 @@ export default {
     }
 
     .map {
+        
         width: 100%;
         height: 300px;
         border-radius: 13px;
