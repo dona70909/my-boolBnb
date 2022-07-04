@@ -14,10 +14,10 @@
         <div class="row mb-4 row-wrapper-images">
 
             <!-- //# immagine left -->
-            <div class="col-6">
-                <img class="big-img" v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
-                <img  class="big-img" v-else :src="'../storage/' + apartment.image" alt="image" /> 
-                <!-- <img class="big-img" :src="apartment.image" alt="image">  -->
+            <div  class="col-6">
+                <!-- <img class="big-img" v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
+                <img  class="big-img" v-else :src="'../storage/' + apartment.image" alt="image" />  --> 
+                <img class="big-img" :src="apartment.image" alt="image">  
             </div>
 
             <!-- //# images right -->
@@ -53,7 +53,7 @@
         <div class="row mb-4">
               <!-- // !! map-->
             <div class="col-12 my-map">
-                <div class='map' id="map"  ref="mapRef"  ></div>
+                <div class='map' id="map"  ref="mapRef"></div>
             </div>
         </div>
 
@@ -116,11 +116,15 @@ export default {
 
 
     name: "ApartmentDetails",
+    
+    //props:['apartment'],
 
     data: function () {
         return {
             apartment: [],
-            map: null,
+            
+            response: "",
+            //map: {},
             name:"",
             surname:"",
             email:"",
@@ -135,10 +139,11 @@ export default {
         };
     },
 
-  
-    mounted() {
+    created() {
 
         this.email = this.$userEmail;
+        console.warn(this.$route.params.id)
+        console.warn(this.apartment.image);
         this.getSingleApartment(this.$route.params.id);
         this.getImages(this.$route.params.id)
 
@@ -153,8 +158,7 @@ export default {
                 
 
                 console.log('sono qui');
-                console.warn(this.apartment);
-                console.warn(this.apartment.lat);
+                console.log(this.apartment.image)
                 this.initializeMap(this.apartment.lat,this.apartment.lng);
     
             })
@@ -181,6 +185,28 @@ export default {
 
 
             this.map = Object.freeze(this.map);
+        },
+
+        emptyMap() {
+
+              //const tt = window.tt; 
+
+            this.map = tt.map({
+                key: "9mpouF1u6K6aGgZJ1Q2cybl2HR9dyJcy",
+                container: this.$refs.mapRef,
+                center: [12.5674, 41.8719],
+                zoom: 5,
+                //style: 'tomtom://vector/1/basic-main',
+            });
+
+            //console.warn(this.map);
+
+            new tt.Marker().setLngLat([lon, lat]).addTo(this.map);
+
+
+            this.map = Object.freeze(this.map);
+
+
         },
         
         sendMessage() {
@@ -233,7 +259,7 @@ export default {
             }).then( response => {
 
                 this.images = response.data.results;
-                console.log(response.data.results);
+                //console.log(response.data.results);
                 //this.getApartmentImages();
         
             })
