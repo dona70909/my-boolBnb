@@ -62,12 +62,12 @@
 
              <!-- //# trigger form -->
             <div class="col-12 d-flex justify-content-start mb-5">
-                <button class="form-btn btn btn-small btn-primary  rounded-pill mb-3 d-flex align-items-center" @click="getDisplayNone()" @dblclick="getDisplayNone()">
+                <button class="form-btn btn btn-small btn-primary  mb-3 d-flex align-items-center my-btn" @click="getDisplayNone()" @dblclick="getDisplayNone()">
                     <h6 class="text-center m-0 p-0 ">Contatta l'host</h6>
                 </button>
             </div>
 
-            <div class="col-5">
+            <div class="col-6">
                 <!-- //#form -->
                 <form v-show="this.isNone == true"  @submit.prevent="sendMessage" class="form-wrap">
 
@@ -93,7 +93,7 @@
                         <textarea class="form-control error" v-model="message_content" id="message_content"  cols="30"  rows="4"  placeholder="Write your message" required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary mx-2">Submit</button>
+                    <button type="submit" class="btn btn-primary my-btn mx-2">Submit</button>
                 </form>
 
                 <!-- //# message sent  -->
@@ -294,6 +294,7 @@ export default {
         height: 300px;
         border-radius: 13px;
     }
+
     .row-wrapper-images {
 
             //height: 450px;
@@ -348,10 +349,12 @@ export default {
     /* //!! form wrap */
     .form-wrap {
 
-        background-color: red;
-        border: 2px solid black;
+        background-color: white;
+        border: 1px solid black;
         border-radius: 13px;
         padding: 4rem;
+        box-shadow:2rem 2rem #003580;
+        height: 100vh;
     }
 
     
@@ -363,5 +366,12 @@ export default {
             font-weight: 700;
         }
     }
+
+    .my-btn {
+
+        box-shadow: .5rem .5rem #febb02;
+    }
+
+
 
 </style>
