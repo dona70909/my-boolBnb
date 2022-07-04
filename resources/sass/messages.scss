@@ -1,0 +1,73 @@
+// Variables
+@import '_variables';
+
+.wrapper-intro {
+
+    .title {
+
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    .address {
+
+        font-size: 1.5rem;
+        color: rgb(51, 51, 51);
+    }
+}
+
+.box-messages {
+
+    gap: 1rem;
+
+    .box-message {
+
+        border: 3px solid $blueNav;
+
+        .email {
+
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .name {
+
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .msg-content {
+
+            font-size: 1.5rem;
+        }
+    }
+    .box-msg-date {
+
+        font-size: 1rem;
+    }
+}
+
+.list-messages {
+
+    .message-item {
+
+        border: 3px solid $blueNav;
+
+        p {
+
+            font-size: 1rem;
+        }
+
+        .email-item {
+
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .created-at-item {
+
+            font-size: 1rem;
+        }
+    }
+}

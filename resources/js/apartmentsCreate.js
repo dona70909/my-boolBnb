@@ -48,7 +48,7 @@ inputAddress.addEventListener('keyup', function() {
                 
             })
             .catch(function (error) {
-                console.log(error);
+                console.log(error); 
             })
             
         }    
