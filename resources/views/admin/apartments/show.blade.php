@@ -22,16 +22,23 @@
                 @endforeach
             </ul>
 
-            <div class="col-8 box-messages ">
-                @forEach($messages as $key => $msg )
-                    <div class="box-message p-4 mb-2">
-                        <h6 class="email">From {{$msg->email}}</h6>
-                        <h6 class="name">{{$msg->name}} {{$msg->surname}}</h6>
-                        <p class="msg-content">{{$msg->message_content}}</p>
-                        <p class="box-msg-date">{{$msg->created_at}}</p>
-                    </div>
-                @endforeach
-            </div>
+            @if (count($messages) > 0)
+                <div class="col-8 box-messages">
+                    @forEach($messages as $key => $msg )
+                        <div class="box-message p-4 mb-2">
+                            <h6 class="email">From {{$msg->email}}</h6>
+                            <h6 class="name">{{$msg->name}} {{$msg->surname}}</h6>
+                            <p class="msg-content">{{$msg->message_content}}</p>
+                            <p class="box-msg-date">{{$msg->created_at}}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="col-8">
+                    <h2 class="empty-message">Non ci sono messaggi da mostrare</h2>
+                </div>
+            @endif
+            
         </div>
     </section>
 @endsection
