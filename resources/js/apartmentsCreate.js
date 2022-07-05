@@ -120,3 +120,127 @@ $(document).ready(function(){
     });
 });
 
+// input tag dom
+const input = document.querySelector('#images');
+
+// box intero input 
+const inputContainer = document.querySelector('#input-images-container');
+
+//container dove viene inserita una singola immagine
+const listImages = document.querySelector('#files-list-container');
+
+const imagesList = [];
+
+let uploadedImages = [];
+
+const multipleEvents = (element, eventNames, listener) => {
+
+    const events = eventNames.split(' ');
+    
+    events.forEach(event => {
+        element.addEventListener(event, listener, false);
+    });
+};
+
+const previewImages = () => {
+
+    listImages.innerHTML = '';
+
+    if (imagesList.length > 0) {
+
+        imagesList.forEach((addedFile, index) => {
+                
+            const content = `
+                <div class="form__image-container js-remove-image" data-index="${index}">
+                    <img class="form__image" src="${addedFile.url}" alt="${addedFile.name}">
+                </div>
+            `;
+    
+            listImages.insertAdjacentHTML('beforeEnd', content);
+        });
+
+    } else {
+
+        console.log('empty')
+        input.value= "";
+
+    }
+}
+
+
+    const fileUpload = () => {
+        
+        if (listImages) {
+
+            multipleEvents(input, 'click dragstart dragover', () => {
+                    
+                inputContainer.classList.add('active');
+
+            });
+        
+            multipleEvents(input, 'dragleave dragend drop change blur', () => {
+                inputContainer.classList.remove('active');
+            });
+            
+            input.addEventListener('change', () => {
+
+                const files = [...input.files];
+
+                console.log("changed")
+
+                files.forEach(file => {
+
+                    const fileURL = URL.createObjectURL(file);
+                    const fileName = file.name;
+
+                    if (!file.type.match("image/")){
+                        alert(file.name + " is not an image");
+                        console.log(file.type)
+                    } else {
+
+                        const uploadedFiles = {
+                            name: fileName,
+                            url: fileURL,
+                        };
+            
+                        imagesList.push(uploadedFiles);
+                    }
+                });
+                
+                console.log(imagesList)//final list of uploaded files
+
+                previewImages();
+
+                uploadedImages = document.querySelectorAll(".js-remove-image");
+
+                removeFile();
+            }); 
+        }
+    };
+    
+    const removeFile = () => {
+
+        uploadedImages = document.querySelectorAll(".js-remove-image");
+        
+        if (uploadedImages) {
+            
+            uploadedImages.forEach(image => {
+
+                image.addEventListener('click', function() {
+
+                    const fileIndex = this.getAttribute('data-index');
+            
+                    imagesList.splice(fileIndex, 1);
+                    previewImages();
+                    removeFile();
+                });
+            });
+
+        } else {
+
+            [...input.files] = [];
+        }
+    };
+    
+    fileUpload();
+    removeFile();

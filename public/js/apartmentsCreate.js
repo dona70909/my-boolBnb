@@ -2105,6 +2105,18 @@ process.umask = function() { return 0; };
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 var api_key = "9mpouF1u6K6aGgZJ1Q2cybl2HR9dyJcy;"; //# prendo gli input tramite id dal form di blade
 
@@ -2182,7 +2194,93 @@ $(document).ready(function () {
   $('box-images input').change(function () {
     $('box-images p').text(this.files.length + " file(s) selected");
   });
-});
+}); // input tag dom
+
+var input = document.querySelector('#images'); // box intero input 
+
+var inputContainer = document.querySelector('#input-images-container'); //container dove viene inserita una singola immagine
+
+var listImages = document.querySelector('#files-list-container');
+var imagesList = [];
+var uploadedImages = [];
+
+var multipleEvents = function multipleEvents(element, eventNames, listener) {
+  var events = eventNames.split(' ');
+  events.forEach(function (event) {
+    element.addEventListener(event, listener, false);
+  });
+};
+
+var previewImages = function previewImages() {
+  listImages.innerHTML = '';
+
+  if (imagesList.length > 0) {
+    imagesList.forEach(function (addedFile, index) {
+      var content = "\n                <div class=\"form__image-container js-remove-image\" data-index=\"".concat(index, "\">\n                    <img class=\"form__image\" src=\"").concat(addedFile.url, "\" alt=\"").concat(addedFile.name, "\">\n                </div>\n            ");
+      listImages.insertAdjacentHTML('beforeEnd', content);
+    });
+  } else {
+    console.log('empty');
+    input.value = "";
+  }
+};
+
+var fileUpload = function fileUpload() {
+  if (listImages) {
+    multipleEvents(input, 'click dragstart dragover', function () {
+      inputContainer.classList.add('active');
+    });
+    multipleEvents(input, 'dragleave dragend drop change blur', function () {
+      inputContainer.classList.remove('active');
+    });
+    input.addEventListener('change', function () {
+      var files = _toConsumableArray(input.files);
+
+      console.log("changed");
+      files.forEach(function (file) {
+        var fileURL = URL.createObjectURL(file);
+        var fileName = file.name;
+
+        if (!file.type.match("image/")) {
+          alert(file.name + " is not an image");
+          console.log(file.type);
+        } else {
+          var uploadedFiles = {
+            name: fileName,
+            url: fileURL
+          };
+          imagesList.push(uploadedFiles);
+        }
+      });
+      console.log(imagesList); //final list of uploaded files
+
+      previewImages();
+      uploadedImages = document.querySelectorAll(".js-remove-image");
+      removeFile();
+    });
+  }
+};
+
+var removeFile = function removeFile() {
+  uploadedImages = document.querySelectorAll(".js-remove-image");
+
+  if (uploadedImages) {
+    uploadedImages.forEach(function (image) {
+      image.addEventListener('click', function () {
+        var fileIndex = this.getAttribute('data-index');
+        imagesList.splice(fileIndex, 1);
+        previewImages();
+        removeFile();
+      });
+    });
+  } else {
+    var _ref = [];
+    input.files = _ref.slice(0);
+  }
+};
+
+fileUpload();
+removeFile();
 
 /***/ }),
 

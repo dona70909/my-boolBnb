@@ -124,17 +124,21 @@
                         @enderror
                     </div>
 
-                    <div class="box-images mb-5">
-                        {{-- %image --}}
+                    <div class="box-images mb-5" id="input-images-container">
+                        {{-- %images --}}
                         {{-- click here or drag here your images for preview and set userprofile_picture data --}}
-                        <label for="singleImage">Inserisci altre immagini</label>
-                        <input type="file" class="form-control" id="singleImage"  name="images[]" multiple >
+                        <label for="images">Inserisci altre immagini</label>
+                        <input type="file" class="form-control" id="images"  name="images[]" multiple >
                         
                         @error('image')
                             <div class="alert alert-danger">
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+
+                    <div class="_files-container d-flex" id="files-list-container">
+
                     </div>
 
                     <div class="box-addresses d-flex flex-column">
