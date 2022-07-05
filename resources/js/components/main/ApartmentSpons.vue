@@ -1,7 +1,7 @@
 <template>
 
   
-  <div v-if="this.isSponsorized == true" class="my-card-wrap col-3">
+  <div v-if="this.isSponsorized == true" class="my-card-wrap col-3 ">
 
     <router-link class="wrapper-img mb-2 " :to="{ name: 'apartment-details', params: { id: apartment.id } }">
          <!-- //!! IMMAGINE -->
@@ -26,15 +26,29 @@
                     </div>
 
                 </div>
-                  
-                
             </div>  
         </div>
 
         <!-- show the front image if carousel is empty or equal to one -->
-        <div v-show="images.length === 0 || images.length === 1" class="mb-3">
+        <div v-show="images.length === 0 || images.length === 1" class="mb-3 wrapper-front-image">
             <img v-if="apartment.image.startsWith('https://') || apartment.image.startsWith('http://')" :src="apartment.image" alt="image"/>
             <img v-else :src="'../storage/' + apartment.image" alt="image" /> 
+
+            <!-- <div class="wrapper-stars">
+                <div  v-for="(sponsor, index) in apartment.apartment_sponsorship" :key="index + 1">
+                  <div v-if="new Date(sponsor.end_date) > Date.now() ">
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="wrapper-stars">
+            <div  v-for="(sponsor, index) in apartment.apartment_sponsorship" :key="index + 1">
+              <div v-if="new Date(sponsor.end_date) > Date.now() ">
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
         </div>
 
     </router-link>
@@ -51,11 +65,7 @@
       </p>
     </div>
 
-    <div  v-for="(sponsor, index) in apartment.apartment_sponsorship" :key="index">
-          <div v-if="new Date(sponsor.end_date) > Date.now() ">
-            <i class="bi bi-star-fill"></i>
-          </div>
-    </div>
+   
 
 
 
@@ -220,17 +230,45 @@ export default {
 
       .button-wrapper-left {
 
-        position: relative;
+        position: absolute;
         bottom: 100px;
-        //display: none;
+        right: 0;
+        padding: 0 .3rem;
       }
 
       .button-wrapper-right {
 
-        position: relative;
+        position: absolute;
         bottom: 100px;
-        //display: none;
+        left: 0;
+        padding: 0 .3rem;
       }
+
+
     }
+
+
+    .my-card-wrap {
+
+      position: relative;
+      //height: 300px;
+
+      .wrapper-stars {
+
+        position:absolute;
+        bottom: 230px;
+        left: 20px;
+        padding: 0 .3rem;
+
+        .bi-star-fill {
+
+          color: rgb(233, 199, 10);
+
+          &:hover {
+            color: rgb(255, 217, 0);
+          }
+        }
+      }
+    } 
 
 </style>

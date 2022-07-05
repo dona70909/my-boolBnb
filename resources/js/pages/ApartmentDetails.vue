@@ -81,9 +81,11 @@
                             </div>
 
                             <div class="modal-body">
-                                <!-- //#form -->
-                                <div v-if="alert" class="alert alert-success" v-text="alert"></div>
-                                
+                                <!-- alert message  -->
+                                <div v-if="alert" class="alert-success alert-dismissable" v-text="alert">
+                                </div>
+
+                                 <!-- //#form -->
                                 <form v-show="this.isNone == true"  @submit.prevent="sendMessage">
                                     <div class="container-form-group-name d-flex justify-content-between">
                                         <div class="form-group mx-2">
