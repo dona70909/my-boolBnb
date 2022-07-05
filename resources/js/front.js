@@ -2,6 +2,7 @@ window.axios = require('axios');
 /* window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; */
 Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
 
+
 window.Vue = require('vue');
 
 import 'bootstrap/dist/css/bootstrap.min.css'

@@ -37,20 +37,8 @@ class MessageController extends Controller
      */
     public function store(Request $request, Apartment $apartment)
     {
-        $request->validate([
-            'name' => 'required|alpha|max:255',
-            'surname' => 'required|alpha|max:255', 
-            'email' => 'required|email',
-            'message_content' => 'required|alpha_num'
-        ]);
 
-        $data = $request->all();
-        $message = new Message();
-        $message->fill($data);
-        $message->save();
-        $message->apartments()->sync($data['apartment']);
-        return redirect()->route('admin.apartments.show', ['apartment'=>$apartment, 'message' => $message])->with('message', 'Messaggio inviato correttamente');
-
+        //store tramite Api
     }
 
     /**

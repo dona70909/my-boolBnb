@@ -71,7 +71,7 @@ export default {
             this.$router.push({
                 name: "advancedsearch",
                 params: {
-                query: this.search,
+                    query: this.search,
                 },
             });
         },

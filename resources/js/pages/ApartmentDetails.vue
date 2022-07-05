@@ -1,6 +1,6 @@
 <template>
-<div class="container-fluid px-5 " >
-
+<div class="container-fluid px-5 ">
+        
         <!-- //!! titolo address -->
         <div class="row mb-2 wrapper-title">
             <div class="col-12">
@@ -62,44 +62,58 @@
 
              <!-- //# trigger form -->
             <div class="col-12 d-flex justify-content-start mb-5">
-                <button class="form-btn btn btn-small btn-primary  mb-3 d-flex align-items-center my-btn" @click="getDisplayNone()" @dblclick="getDisplayNone()">
+                <button type="button" data-toggle="modal" data-target="#form-contact" class="form-btn btn btn-small btn-primary  mb-3 d-flex align-items-center my-btn" @click="getDisplayNone()" @dblclick="getDisplayNone()">
                     <h6 class="text-center m-0 p-0 ">Contatta l'host</h6>
                 </button>
             </div>
 
-            <div class="col-6">
-                <!-- //#form -->
-                <form v-show="this.isNone == true"  @submit.prevent="sendMessage" class="form-wrap">
+            <div class="col-6">                
+                <!-- Modal -->
+                <div class="modal fade" id="form-contact" tabindex="-1" role="dialog" >
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
 
-                    <div class="container-form-group-name d-flex justify-content-between">
-                        <div class="form-group mx-2">
-                            <label for="name" class="col-form-label">Nome</label>
-                            <input type="text"  class="form-control error"  v-model="name" id="name" placeholder="Nome"   />
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Contatta l'host</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <!-- //#form -->
+                                <div v-if="alert" class="alert alert-success" v-text="alert"></div>
+                                
+                                <form v-show="this.isNone == true"  @submit.prevent="sendMessage">
+                                    <div class="container-form-group-name d-flex justify-content-between">
+                                        <div class="form-group mx-2">
+                                            <label for="name" class="col-form-label">Nome</label>
+                                            <input type="text"  class="form-control error"  v-model="name" id="name" placeholder="Nome"   />
+                                        </div>
+                                        
+                                        <div class="form-group mx-2">
+                                            <label for="surname" class="col-form-label">Cognome </label>
+                                            <input type="text"  class="form-control error"   v-model="surname"  id="surname"  placeholder="Cognome"  />
+                                        </div>
+                                        </div>
+
+                                        <div class="form-group mx-2">
+                                            <label for="email" class="col-form-label">Email *</label>
+                                            <input type="text" class="form-control error" v-model="email" id="email"  placeholder="La tua email" required/>
+                                        </div>
+
+                                        <div class="form-group mx-2">
+                                            <label for="message_content" class="col-form-label">Messaggio *</label>
+                                            <textarea class="form-control error" v-model="message_content" id="message_content"  cols="30"  rows="4"  placeholder="Write your message" required></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary my-btn mx-2">Submit</button>
+                                </form>
+                            </div>
                         </div>
-                        
-                        <div class="form-group mx-2">
-                            <label for="surname" class="col-form-label">Cognome </label>
-                            <input type="text"  class="form-control error"   v-model="surname"  id="surname"  placeholder="Cognome"  />
-                        </div>
                     </div>
-
-                    <div class="form-group mx-2">
-                        <label for="email" class="col-form-label">Email *</label>
-                        <input type="text" class="form-control error" v-model="email" id="email"  placeholder="la tua email" required/>
-                    </div>
-
-                    <div class="form-group mx-2">
-                        <label for="message_content" class="col-form-label">Messaggio *</label>
-                        <textarea class="form-control error" v-model="message_content" id="message_content"  cols="30"  rows="4"  placeholder="Write your message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary my-btn mx-2">Submit</button>
-                </form>
-
-                <!-- //# message sent  -->
-                <div id="form-message-success" v-if="this.isSent === true">
-                    Il tuo messaggio è stato inviato correttamente,grazie!
                 </div>
+
                 
             </div>
 
@@ -117,7 +131,7 @@ export default {
 
     name: "ApartmentDetails",
     
-    //props:['apartment'],
+    
 
     data: function () {
         return {
@@ -135,6 +149,7 @@ export default {
             isNone:false,
 
             images:[],
+            alert: null
             
         };
     },
@@ -176,7 +191,7 @@ export default {
                 container: this.$refs.mapRef,
                 center: [lon, lat],
                 zoom: 9,
-                //style: 'tomtom://vector/1/basic-main',
+                
             });
 
             console.warn(this.map);
@@ -196,7 +211,7 @@ export default {
                 container: this.$refs.mapRef,
                 center: [12.5674, 41.8719],
                 zoom: 5,
-                //style: 'tomtom://vector/1/basic-main',
+                
             });
 
             //console.warn(this.map);
@@ -228,6 +243,18 @@ export default {
                 this.surname = "",
                 this.email = '';
                 this.message_content = '';
+                
+                this.alert = response.data.alert_sent;
+
+                /* this.$router.push({
+
+                    name: 'apartment-details',
+                    params: { 
+                        id: this.apartment.id 
+                    }
+                }); */
+                
+                
             }
             })
         },
@@ -352,9 +379,8 @@ export default {
         background-color: white;
         border: 1px solid black;
         border-radius: 13px;
-        padding: 4rem;
-        box-shadow:2rem 2rem #003580;
-        height: 100vh;
+        padding: 2rem;
+        box-shadow:1rem 1rem #003580;
     }
 
     

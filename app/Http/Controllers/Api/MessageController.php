@@ -41,7 +41,10 @@ class MessageController extends Controller
 
         return response()->json([
             'success' => true,
+            'alert_sent' => 'Messaggio  inviato correttamente.'
         ]);
+
+        //return redirect('apartment-details')->with('alert_sent', 'Selected query is deleted successfully.');
     }
 
 }
