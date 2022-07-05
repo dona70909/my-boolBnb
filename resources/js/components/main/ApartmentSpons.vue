@@ -61,14 +61,9 @@
       <h6>{{apartment.address}}</h6>
 
       <p class="text-gray">
-        {{apartment.daily_price}} £
+        <strong>Prezzo giornaliero: </strong>{{apartment.daily_price}} £
       </p>
     </div>
-
-   
-
-
-
 
   </div>
 
@@ -226,7 +221,10 @@ export default {
 
       position: relative;
 
-      
+      .wrapper-buttons {
+
+        margin-bottom: 1rem;
+      }
 
       .button-wrapper-left {
 
