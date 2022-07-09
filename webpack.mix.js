@@ -29,4 +29,7 @@ mix.js('resources/js/front.js', 'public/js');
 /* //# js per collegare javascript al create di blade */
 mix.js('resources/js/apartmentsCreate.js', 'public/js');
 
+/* //# js per i messaggi */
+mix.js('resources/js/messages.js', 'public/js');
+
 

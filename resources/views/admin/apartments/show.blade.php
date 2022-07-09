@@ -25,7 +25,7 @@
             @if (count($messages) > 0)
                 <div class="col-8 box-messages">
                     @forEach($messages as $key => $msg )
-                        <div class="box-message p-4 mb-2">
+                        <div class="box-message p-4 mb-2 d-none">
                             <h6 class="email">From {{$msg->email}}</h6>
                             <h6 class="name">{{$msg->name}} {{$msg->surname}}</h6>
                             <p class="msg-content">{{$msg->message_content}}</p>
@@ -43,67 +43,14 @@
     </section>
 @endsection
 
-@section('script')
-<script>
 
-    console.log('ci sono');
-
-    const deleteForms = document.querySelectorAll('.delete-form');
-    
-
-    deleteForms.forEach(singleForm => {
-        singleForm.addEventListener('submit', function (event) {
-            event.preventDefault(); // § blocchiamo l'invio del form
-            userConfirmation = window.confirm(`Sei sicuro di voler eliminare ${this.getAttribute('apartment-title')}?`);
-            if (userConfirmation) {
-                this.submit();
-            }
-        })
-    });
-
-    let messagesList = document.querySelectorAll('.message-item');
-    let boxMessages = document.querySelector('.box-message');
-
-    console.log(boxMessages);
-
-    let activeClick = null;
-    let activBox = null;
-    console.log(messagesList);
-
-    
-
-    messagesList.forEach( (message, index) => {
-        
-        message.addEventListener('click', function() {
-
-            console.log('click');
-            this.activeClick = index;
-            console.log(this.activeClick);
-
-            boxMessages.innerHtml = `
-                <h6>viao</h6>
-                <p>cokoas</p>
-                <p>sapkm</p>
-            `
-
-        })
-    });
-
-    /*  boxMessages.forEach((boxMsg, index) => {
-
-        boxMsg.addEventListener('click', function() {
-
-            console.log('click');
-            this.activeBox = index;
-            console.log(this.activeBox);
-        }) 
-        
-    }) */
-
-</script>
-@endsection
 
 @section('style')
     <link rel="stylesheet"  href="{{ asset('css/messages.css') }}" >
+@endsection
+
+
+@section('script')
+    <script type="text/javascript" src="{{ URL::asset ('js/messages.js')}}" ></script>   
 @endsection
 
