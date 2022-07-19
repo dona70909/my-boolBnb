@@ -4,17 +4,18 @@
 
 
 <div class="container-fluid" id="dropin-container">
-    <div class="row pt-5 px-1 px-md-5">
-        <form id="payment-form" class="col-12 col-md-6 col-lg-4 mx-auto mt-3 p-2" action="{{route('payment')}}"  method='post'>
+    <div class="row justify-content-center">
+        {{-- dimensione del form --}}
+        <form id="payment-form" class="col-6" action="{{route('payment')}}"  method='post'>
             @csrf
             @method('POST')
             <div class="form-group my-2">
-                <h1>{{$apartment->title}}</h1>
+                <h1 class="text-center">{{$apartment->title}}</h1>
                 @foreach ($sponsorships as $sponsorship)
                     <div class="pacchettiSponsor m-3 d-flex">
 
 
-                        <input class="me-3" type="radio" id="spons" name="sponsorship" value="{{$sponsorship->id}}" required />
+                        <input class="mx-3" type="radio" id="spons" name="sponsorship" value="{{$sponsorship->id}}" required />
                         <div class="typeSponsor">
                             <span>Tipologia: {{$sponsorship->name}}</span>
                             <span>Prezzo: {{$sponsorship->price}} euro</span>
@@ -24,7 +25,7 @@
                 @endforeach
             </div>
 
-            <div class="col-7 mx-auto">
+            <div class="">
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin">
 
@@ -49,7 +50,7 @@
             @endphp
 
 
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-between">
                 <button  class="btn btn-outline-success me-2" type="submit">
                     Sponsorizza
                 </button>
@@ -92,4 +93,8 @@
         });
     });
 </script>
+@endsection
+
+@section('style')
+    <link href="{{ asset('css/sponsors.css') }}" rel="stylesheet">
 @endsection

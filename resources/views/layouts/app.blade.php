@@ -52,7 +52,7 @@
             @include('admin.partials.navBar')
         </header>
 
-        <main class="py-4">
+        <main class="my-5">
             @yield('content')
         </main>
     </div>

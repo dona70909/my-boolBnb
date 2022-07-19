@@ -18,6 +18,7 @@ mix.sass('resources/sass/table.scss', 'public/css').options( {processCssUrl: fal
 mix.sass('resources/sass/form.scss', 'public/css').options( {processCssUrl: false} );
 mix.sass('resources/sass/authforms.scss', 'public/css').options( {processCssUrl: false} );
 mix.sass('resources/sass/messages.scss', 'public/css').options( {processCssUrl: false} );
+mix.sass('resources/sass/sponsors.scss', 'public/css').options( {processCssUrl: false} );
 
 
 //# js general admin(ura ur)
