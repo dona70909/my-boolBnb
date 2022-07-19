@@ -1,4 +1,3 @@
-console.log('ci sono');
 
 const deleteForms = document.querySelectorAll('.delete-form');
 

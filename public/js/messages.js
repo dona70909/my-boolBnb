@@ -93,7 +93,6 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-console.log('ci sono');
 var deleteForms = document.querySelectorAll('.delete-form');
 deleteForms.forEach(function (singleForm) {
   singleForm.addEventListener('submit', function (event) {
