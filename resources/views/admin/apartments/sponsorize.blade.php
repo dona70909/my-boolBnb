@@ -57,10 +57,10 @@
 
 
             <div class="d-flex justify-content-between">
-                <button  class="btn btn-outline-success me-2" type="submit">
+                <button  class="btn my-spons-btn me-2" type="submit">
                     Sponsorizza
                 </button>
-                <button type="button" class="btn btn-outline-info">
+                <button type="button" class="btn my-spons-btn">
                     <a href="{{route('admin.apartments.index')}}" >Torna alla Dashboard</a>
                 </button>
             </div>

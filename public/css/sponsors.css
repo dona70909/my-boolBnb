@@ -4,3 +4,13 @@ form {
   padding: 1rem 0.7rem;
 }
 
+form .my-spons-btn {
+  background-color: #003580;
+  box-shadow: 0.5rem 0.5rem #febb02;
+  color: white;
+}
+
+form .my-spons-btn a {
+  color: white;
+}
+

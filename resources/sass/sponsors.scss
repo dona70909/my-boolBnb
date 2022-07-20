@@ -7,4 +7,17 @@ form {
     background-color: rgb(233, 233, 233);
     box-shadow: 2rem 2rem $blueNav;
     padding: 1rem .7rem;
+
+    .my-spons-btn {
+
+        background-color: $blueNav;
+        box-shadow: .5rem .5rem $goldBtn;
+        color: white;
+
+        a {
+
+            color: white ;
+            
+        }
+    }
 }
