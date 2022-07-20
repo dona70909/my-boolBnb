@@ -12,8 +12,17 @@
   border-radius: 100px !important;
 }
 
-thead {
+#my-table thead {
   background-color: #003580;
+  color: white;
+}
+
+#my-table .my-table-btn {
+  background-color: #003580;
+  box-shadow: 0.5rem 0.5rem #febb02;
+}
+
+#my-table .my-table-btn a {
   color: white;
 }
 

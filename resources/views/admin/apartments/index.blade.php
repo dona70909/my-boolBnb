@@ -102,7 +102,7 @@
                                     Appartamento sponsorizzato
                                 </p>
                             @else 
-                                <button class="btn btn-outline-primary text-decoration-none">
+                                <button class="my-table-btn btn text-decoration-none">
                                     <a class="text-decoration-none ms-sponsorizza" href="{{ route('admin.sponsorize', $apartment->id) }}">
                                         Sponsorizza
                                     </a>
@@ -111,10 +111,14 @@
                         </td>
 
                         <td>
-                            <a type="button" class="btn btn-primary" href="{{route('admin.apartments.show',$apartment->id)}}">Detail</a>
+                            <button class="btn my-table-btn" type="button">
+                                <a  href="{{route('admin.apartments.show',$apartment->id)}}">Detail</a>
+                            </button>
                         </td>
                         <td>
-                            <a href="{{ route("admin.apartments.edit", $apartment->id) }}" type="button" class="btn btn-secondary">Edit</a>
+                            <button class="btn my-table-btn" type="button">
+                                <a href="{{ route("admin.apartments.edit", $apartment->id) }}">Edit</a>
+                            </button>
                         </td>
 
                         {{-- !! DELETE trigger modal btn--}}

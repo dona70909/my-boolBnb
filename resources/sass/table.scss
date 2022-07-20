@@ -27,9 +27,22 @@
 #my-table {
 
     border-radius: 100px !important;
-}
-thead {
 
-    background-color: $blueNav;
-    color:white;
+    thead {
+
+        background-color: $blueNav;
+        color:white;
+    }
+
+    .my-table-btn {
+
+        background-color: $blueNav;
+        box-shadow: .5rem .5rem $goldBtn;
+
+        a {
+
+            color: white ;
+            
+        }
+    }
 }
