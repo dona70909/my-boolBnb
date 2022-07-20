@@ -89,17 +89,24 @@
 
                         {{-- #trigger sponsor check for sponsorships after --}}
                         <td>
-                            @if(count($apartment->apartmentSponsorship) === 0)
+                            {{-- @dump($apartment->apartmentSponsorship) --}}
+                            @php
+                                $expired = array_filter($apartment->apartmentSponsorship->toArray(), function($item) {
+                                    return $item['end_date'] > "2022-07-20";
+                                })
+                            @endphp
+
+                            @if (count($expired) > 0)
+                                
+                                <p>
+                                    Appartamento sponsorizzato
+                                </p>
+                            @else 
                                 <button class="btn btn-outline-primary text-decoration-none">
                                     <a class="text-decoration-none ms-sponsorizza" href="{{ route('admin.sponsorize', $apartment->id) }}">
                                         Sponsorizza
                                     </a>
                                 </button>
-                            @else
-                            {{-- !! modifica link --}}
-                                <p>
-                                    Appartamento sponsorizzato
-                                </p>
                             @endif
                         </td>
 

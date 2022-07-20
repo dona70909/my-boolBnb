@@ -25,14 +25,18 @@
                 @endforeach
             </div>
 
+            
+
             <div class="">
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin">
-
+                    
                     </div>
-                </div>
+                </div> 
+                
                 <div>
 
+                    <input id="price" name="price" type="hidden">
                     <input id="apartment" name="apartment" value="{{$apartment->id}}" type="hidden" />
                     <input id="nonce" name="payment_method_nonce" type="hidden" />
                 </div>
@@ -47,6 +51,8 @@
                 $key = array_search($sponsorship->sponsorship_id, array_column($sponsorsArray,'id'));
 
                 $sponsorship->end_date = date('Y-m-d H:i:s', strtotime(Carbon::parse($sponsorship->start_date). ' + '. strval( $sponsorsArray[$key]['duration_time']) . 'hours')); */
+    
+                
             @endphp
 
 
@@ -68,28 +74,40 @@
 @section('script')
 <script src="https://js.braintreegateway.com/web/dropin/1.31.2/js/dropin.min.js"></script>
 <script>
+
     // $todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var form = document.querySelector('#payment-form');
+
     var client_token = "{{ $token }}";
+
     braintree.dropin.create({
+
         authorization: client_token,
         selector: '#bt-dropin',
+
     }, function (createErr, instance) {
+
         if (createErr) {
-        console.log('Create Error', createErr);
-        return;
-        }
-        form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        instance.requestPaymentMethod(function (err, payload) {
-            if (err) {
-            console.log('Request Payment Method Error', err);
+
+            console.log('Create Error', createErr);
             return;
-            }
-            // Add the nonce to the form and submit
-            document.querySelector('#nonce').value = payload.nonce;
-            form.submit();
-        });
+        }
+
+        form.addEventListener('submit', function (event) {
+
+            event.preventDefault();
+            instance.requestPaymentMethod(function (err, payload) {
+
+                if (err) {
+
+                    console.log('Request Payment Method Error', err);
+                    return;
+                }
+                // Add the nonce to the form and submit
+                document.querySelector('#nonce').value = payload.nonce;
+                document.querySelector('#price').value = payload.price; 
+                form.submit();
+            });
         });
     });
 </script>
